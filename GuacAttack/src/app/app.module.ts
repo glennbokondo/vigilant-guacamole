@@ -3,16 +3,17 @@ import { NgModule } from '@angular/core';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { ExampleComponent } from './example/example.component';
-import { ToolbarComponent } from './toolbar/toolbar.component';
-import { HomeComponent } from './home/home.component';
-import { ProfileComponent } from './profile/profile.component';
-import { SearchListComponent } from './search-list/search-list.component';
+import { ExampleComponent } from './components/example/example.component';
+import { ToolbarComponent } from './components/toolbar/toolbar.component';
+import { HomeComponent } from './components/home/home.component';
+import { ProfileComponent } from './components/profile/profile.component';
+import { SearchListComponent } from './components/search-list/search-list.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import {MatToolbarModule} from '@angular/material/toolbar';
 import {MatMenuModule} from '@angular/material/menu';
 import {MatIconModule} from '@angular/material/icon';
-import { ProfileSettingsComponent } from './profile-settings/profile-settings.component';
+import {MatTableModule} from '@angular/material/table';
+import { ProfileSettingsComponent } from './components/profile-settings/profile-settings.component';
 
 
 @NgModule({
@@ -32,6 +33,7 @@ import { ProfileSettingsComponent } from './profile-settings/profile-settings.co
     MatToolbarModule,
     MatMenuModule,
     MatIconModule,
+    MatTableModule
   ],
   providers: [],
   bootstrap: [AppComponent]

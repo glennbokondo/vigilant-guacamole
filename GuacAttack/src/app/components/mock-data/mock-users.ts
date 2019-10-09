@@ -1,4 +1,4 @@
-import { User } from "../classes/user.class";
+import { User } from "../../classes/user.class";
 
 export const USERS: User[] = [
   {
