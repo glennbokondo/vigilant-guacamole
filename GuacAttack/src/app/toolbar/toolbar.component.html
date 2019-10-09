@@ -1,0 +1,21 @@
+<style>
+  .toolbar-divider {
+    flex: 1 1 auto;
+  }
+</style>
+<mat-toolbar color="primary"><span routerLink="">
+    <mat-icon>home</mat-icon>&nbsp;Application Name
+  </span><span class="toolbar-divider"></span><span routerLink="/profile">Profile</span><span
+    routerLink="/search">Explore</span><span class="toolbar-divider"></span>
+  <mat-menu #appMenu="matMenu">
+    <ng-template matMenuContent>
+      <button mat-menu-item><a routerLink="/profile-settings" routerLinkActive="active">Profile Settings</a></button>
+      <button mat-menu-item>Logout</button>
+    </ng-template>
+  </mat-menu>
+
+  <button mat-icon-button [matMenuTriggerFor]="appMenu">
+    <span>User settings</span>
+    <mat-icon>more_vert</mat-icon>
+  </button>
+</mat-toolbar>
