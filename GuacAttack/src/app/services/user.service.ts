@@ -10,7 +10,7 @@ export class UserService {
 
   constructor() { }
 
-  getUsers(): Observable<User>[] {
+  getUsers(): Observable<User[]> {
     return of(USERS);
   }
 }
