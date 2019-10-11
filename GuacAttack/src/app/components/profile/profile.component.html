@@ -1,1 +1,20 @@
-<mat-card><mat-card-title>Profile</mat-card-title><p>profile works!</p></mat-card>
+<mat-card>
+    <mat-card-title>Profile</mat-card-title>
+    <p class="card-label">ID</p>
+    <mat-card-content>
+        {{user.id}}
+    </mat-card-content>
+    <p class="card-label">Username</p>
+    <mat-card-content>
+        {{user.username}}
+    </mat-card-content>
+    <p class="card-label">Name</p>
+    <mat-card-content>
+        {{user.firstName}}&nbsp;{{user.lastName}}
+    </mat-card-content>
+    <p class="card-label">Email</p>
+    <mat-card-content>
+        {{user.email}}
+    </mat-card-content>
+    <mat-divider></mat-divider>
+</mat-card>

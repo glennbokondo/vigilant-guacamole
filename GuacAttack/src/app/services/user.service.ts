@@ -9,7 +9,15 @@ import { Observable, of } from 'rxjs';
 export class UserService {
 
   constructor() { }
-
+  findById(id: number): Observable<User> {
+    return of({
+      id: 11,
+      username: "QRY91",
+      firstName: "Glenn",
+      lastName: "Bokondo",
+      email: "glennbokondo@gmail.com"
+    });
+  }
   getUsers(): Observable<User[]> {
     return of(USERS);
   }
