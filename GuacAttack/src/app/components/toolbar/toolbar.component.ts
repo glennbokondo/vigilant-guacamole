@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { AngularFireAuth } from "@angular/fire/auth";
 
 @Component({
   selector: 'app-toolbar',
@@ -7,8 +8,10 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ToolbarComponent implements OnInit {
 
-  constructor() { }
-
+  constructor(public afAuth: AngularFireAuth) {}
+  logout() {
+    this.afAuth.auth.signOut();
+  }
   ngOnInit() {
   }
 

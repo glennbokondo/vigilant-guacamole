@@ -1,0 +1,19 @@
+<div *ngIf="afAuth.user | async as user; else showLogin">
+    
+    <h1>Hello {{ user.displayName }}!</h1>
+    <button (click)="logout()">Logout</button>
+</div>
+<ng-template #showLogin>
+    <mat-form-field>
+            <input matInput placeholder="Enter your email" [(ngModel)]="form.email" [formControl]="email" required>
+            <mat-error *ngIf="email.invalid">{{getErrorMessage()}}</mat-error>
+    </mat-form-field>
+    <mat-form-field>
+            <input matInput placeholder="Password" [(ngModel)]="form.password" [type]="hide ? 'password' : 'text'">
+            <button mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-label]="'Hide password'" [attr.aria-pressed]="hide">
+            <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
+            </button>
+    </mat-form-field>
+    <button mat-raised-button (click)="login()">Login</button>
+    <button mat-raised-button (click)="register()">Register</button>
+    </ng-template>
