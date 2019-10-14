@@ -10,11 +10,7 @@ import { User } from '../../classes/user.class';
 export class ProfileComponent implements OnInit {
   constructor(private userService: UserService) { }
   user: User;
-  getUser(): void {
-    this.userService.findById(99999999999999).subscribe(user => this.user = user);
-  }
   ngOnInit() {
-    this.getUser();
   }
 
 }

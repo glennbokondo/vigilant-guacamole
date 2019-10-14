@@ -3,7 +3,17 @@
 // The list of file replacements can be found in `angular.json`.
 
 export const environment = {
-  production: false
+  production: false,
+  firebaseConfig: {
+    apiKey: "AIzaSyAAOTN2fsrT_m7XOxY7FLrrcdW7lcMOMu8",
+    authDomain: "volatile-guacamole.firebaseapp.com",
+    databaseURL: "https://volatile-guacamole.firebaseio.com",
+    projectId: "volatile-guacamole",
+    storageBucket: "volatile-guacamole.appspot.com",
+    messagingSenderId: "15572699035",
+    appId: "1:15572699035:web:dbd66203a2d4880957c33e",
+    measurementId: "G-G0DCQ5SSQJ"
+  }
 };
 
 /*

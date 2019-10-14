@@ -11,11 +11,16 @@ export class SearchListComponent implements OnInit {
 
   constructor(private userService: UserService) { }
 
-  users: User[];
+  users: any;
   displayedColumns = ['id', 'username', 'firstName', 'lastName', 'email']
 
-  getUsers(): void {
-    this.userService.getUsers().subscribe(users => this.users = users);
+  async getUsers() {
+    this.users = await this.userService.getAll();
+    console.log(this.users);
+  }
+
+  createUser(user: User): void {
+    this.userService.create(user);
   }
 
   ngOnInit() {
