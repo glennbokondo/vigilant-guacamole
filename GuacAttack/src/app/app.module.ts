@@ -20,6 +20,7 @@ import { AngularFireAuthModule } from "@angular/fire/auth";
 import { LoginComponent } from "./components/login/login.component";
 import { FormsModule } from "@angular/forms";
 import { AuthService } from './services/auth.service';
+import { NewProfileComponent } from './components/new-profile/new-profile.component';
 
 @NgModule({
   declarations: [
@@ -30,18 +31,19 @@ import { AuthService } from './services/auth.service';
     ProfileComponent,
     SearchListComponent,
     ProfileSettingsComponent,
-    LoginComponent
+    LoginComponent,
+    NewProfileComponent
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule,
     BrowserAnimationsModule,
     MaterialModule,
     AngularFireModule.initializeApp(environment.firebaseConfig, "guacattack"),
     AngularFireDatabaseModule,
     AngularFireStorageModule,
     AngularFireAuthModule,
-    FormsModule
+    FormsModule,
+    AppRoutingModule,
   ],
   providers: [AuthService],
   bootstrap: [AppComponent]

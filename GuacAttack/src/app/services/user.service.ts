@@ -27,7 +27,8 @@ export class UserService {
       .toPromise();
   }
   
-  async getById(id: string) {
+  async getById(id: string): Promise<any> {
+    console.log('id received:', id);
     return await this.db
       .object<User>(this.database + "/" + id)
       .valueChanges()
