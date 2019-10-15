@@ -13,9 +13,6 @@ export class SearchListComponent implements OnInit {
 
   users: any;
   displayedColumns = ['displayName', 'firstName', 'lastName', 'email']
-  redirect(event: any, item: any){
-    console.log('event:', event,'item:', item);
-  }
   async getUsers() {
     this.users = await this.userService.getAll();
   }

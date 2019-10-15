@@ -28,7 +28,6 @@ export class UserService {
   }
   
   async getById(id: string): Promise<any> {
-    console.log('id received:', id);
     return await this.db
       .object<User>(this.database + "/" + id)
       .valueChanges()
@@ -37,7 +36,6 @@ export class UserService {
   }
 
   create(object: User) {
-    console.log("CREATE");
     object.id = this.db.createPushId();
     let key = this.itemList.push(object).key;
     object.id = key;

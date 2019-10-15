@@ -32,7 +32,6 @@ export class AuthService {
         } else {
           alert(errorMessage);
         }
-        console.log(error);
       });
   }
 
@@ -47,7 +46,6 @@ export class AuthService {
         } else {
           alert(errorMessage);
         }
-        console.log(error);
       });
   }
 

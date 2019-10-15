@@ -20,13 +20,9 @@ export class NewProfileComponent implements OnInit {
   }
   ngOnInit() {
     this.route.paramMap.subscribe(res => this.form['authId'] = res.params.id);
-    console.log('form', this.form);
     this.user = this.route.paramMap.pipe(
       switchMap((params: ParamMap) =>
         this.userService.getById(params.get('id')))
     );
-    // this.userService.getById("-LrEIDrZpAuYYC_OX4O_").then(res => this.form = res);
-    console.log(this.user)
-    // this.form = new User();
   }
 }
