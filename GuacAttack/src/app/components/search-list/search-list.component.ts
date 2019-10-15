@@ -12,7 +12,7 @@ export class SearchListComponent implements OnInit {
   constructor(private userService: UserService) { }
 
   users: any;
-  displayedColumns = ['id', 'username', 'firstName', 'lastName', 'email']
+  displayedColumns = ['displayName', 'firstName', 'lastName', 'email']
 
   async getUsers() {
     this.users = await this.userService.getAll();
