@@ -26,8 +26,17 @@ export class UserService {
       .pipe(take(1))
       .toPromise();
   }
+  
+  async getById(id: string) {
+    return await this.db
+      .object<User>(this.database + "/" + id)
+      .valueChanges()
+      .pipe(take(1))
+      .toPromise();
+  }
 
   create(object: User) {
+    console.log("CREATE");
     object.id = this.db.createPushId();
     let key = this.itemList.push(object).key;
     object.id = key;

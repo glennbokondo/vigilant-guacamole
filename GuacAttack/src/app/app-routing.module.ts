@@ -8,12 +8,16 @@ import { SearchListComponent } from './components/search-list/search-list.compon
 import { LoginComponent } from './components/login/login.component';
 
 const routes: Routes = [
-  { path: "", component: HomeComponent },
+  { path: "home", component: HomeComponent },
+  { path: '',   redirectTo: '/home', pathMatch: 'full' },
   { path: "login", component: LoginComponent },
   { path: "example", component: ExampleComponent },
+  { path: "profile/:id", component: ProfileComponent },
   { path: "profile", component: ProfileComponent },
+  { path: "profile-settings/:id?", component: ProfileSettingsComponent },
   { path: "profile-settings", component: ProfileSettingsComponent },
   { path: "search", component: SearchListComponent },
+  { path: '**', component: HomeComponent }
 ];
 
 @NgModule({

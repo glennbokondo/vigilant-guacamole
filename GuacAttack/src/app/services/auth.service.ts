@@ -40,7 +40,6 @@ export class AuthService {
     await this.afAuth.auth
       .signInWithEmailAndPassword(email, password)
       .catch(function(error) {
-        // Handle Errors here.
         var errorCode = error.code;
         var errorMessage = error.message;
         if (errorCode === "auth/wrong-password") {
@@ -50,8 +49,6 @@ export class AuthService {
         }
         console.log(error);
       });
-    this.currentUser2 = this.afAuth.auth.currentUser;
-    return this.afAuth.auth.currentUser;
   }
 
   logout() {
