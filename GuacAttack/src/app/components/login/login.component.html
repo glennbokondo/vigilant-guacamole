@@ -1,11 +1,9 @@
-<div *ngIf="afAuth.user | async as user; else showLogin">
+<div *ngIf="authService.afAuth.user | async as user; else showLogin">
     
     <h1>Hello {{ user.email }}!</h1>
 </div>
-{{test}}
-{{loginStatus}}
-{{currentUser}}
-{{afAuth.auth.currentUser.email}}
+{{authService.afAuth.auth.currentUser.email}}
+{{authService.afAuth.auth.currentUser.uid}}
 <ng-template #showLogin>
     <mat-form-field>
             <input matInput placeholder="Enter your email" [(ngModel)]="form.email" [formControl]="email" required>

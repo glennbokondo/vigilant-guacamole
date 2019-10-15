@@ -36,8 +36,8 @@ export class AuthService {
       });
   }
 
-  login(email: string, password: string) {
-    this.afAuth.auth
+  async login(email: string, password: string) {
+    await this.afAuth.auth
       .signInWithEmailAndPassword(email, password)
       .catch(function(error) {
         // Handle Errors here.
@@ -51,6 +51,7 @@ export class AuthService {
         console.log(error);
       });
     this.currentUser2 = this.afAuth.auth.currentUser;
+    return this.afAuth.auth.currentUser;
   }
 
   logout() {

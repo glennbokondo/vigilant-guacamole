@@ -2,6 +2,7 @@ import { Component, OnInit } from "@angular/core";
 import { AngularFireAuth } from "@angular/fire/auth";
 import { FormControl, Validators } from "@angular/forms";
 import { AuthService } from 'src/app/services/auth.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: "app-login",
@@ -9,11 +10,11 @@ import { AuthService } from 'src/app/services/auth.service';
   styleUrls: ["./login.component.sass"]
 })
 export class LoginComponent implements OnInit {
-  constructor(private authService: AuthService, public afAuth: AngularFireAuth) {}
+  constructor(public authService: AuthService, private router: Router) {}
   hide = true;
   form = { email: "", password: "" };
   email = new FormControl("", [Validators.required, Validators.email]);
-  currentUser: any = {};
+  currentUser: any;
   loginStatus: any;
   test: any;
 
@@ -29,50 +30,15 @@ export class LoginComponent implements OnInit {
   register(){
     this.authService.register(this.form.email, this.form.password);
   }
-
-  login(){
-    this.authService.login(this.form.email, this.form.password);
-    this.currentUser = this.authService.currentUser2;
+  
+  async login(){
+    await this.authService.login(this.form.email, this.form.password);
+    this.currentUser = this.authService.afAuth.auth.currentUser;
+    this.router.navigate(['/profile']);
   }
   
   async ngOnInit() {
-    // await this.authService.currentUser();
-    this.loginStatus = this.authService.amIloggedIn();
-    this.currentUser = this.authService.currentUser2;
     this.authService.updateProfile();
     this.test = this.authService.showMeUser();
   }
-  // register() {
-  //   this.afAuth.auth
-  //     .createUserWithEmailAndPassword(this.form.email, this.form.password)
-  //     .catch(function(error) {
-  //       // Handle Errors here.
-  //       var errorCode = error.code;
-  //       var errorMessage = error.message;
-  //       if (errorCode == "auth/weak-password") {
-  //         alert("The password is too weak.");
-  //       } else {
-  //         alert(errorMessage);
-  //       }
-  //       console.log(error);
-  //     });
-  // }
-  // login() {
-  //   this.afAuth.auth
-  //     .signInWithEmailAndPassword(this.form.email, this.form.password)
-  //     .catch(function(error) {
-  //       // Handle Errors here.
-  //       var errorCode = error.code;
-  //       var errorMessage = error.message;
-  //       if (errorCode === "auth/wrong-password") {
-  //         alert("Wrong password.");
-  //       } else {
-  //         alert(errorMessage);
-  //       }
-  //       console.log(error);
-  //     });
-  // }
-  // logout() {
-  //   this.afAuth.auth.signOut();
-  // }
 }
