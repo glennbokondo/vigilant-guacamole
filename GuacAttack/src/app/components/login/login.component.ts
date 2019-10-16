@@ -32,9 +32,9 @@ export class LoginComponent implements OnInit {
   }
   
   async login(){
-    await this.authService.login(this.form.email, this.form.password);
-    this.currentUser = this.authService.afAuth.auth.currentUser;
-    this.router.navigate(['/profile/new', this.currentUser.uid]);
+    // await this.authService.signIn(this.form.email, this.form.password);
+    // this.currentUser = this.authService.afAuth.auth.currentUser;
+    // this.router.navigate(['/profile/new', this.currentUser.uid]);
   }
   
   async ngOnInit() {

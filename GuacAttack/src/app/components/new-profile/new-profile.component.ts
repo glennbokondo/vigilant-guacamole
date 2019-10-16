@@ -1,6 +1,6 @@
 import { Component, OnInit } from "@angular/core";
 import { UserService } from "../../services/user.service";
-import { User } from "src/app/classes/user.class";
+import { User } from "src/app/models/user.model";
 import { Router, ActivatedRoute, ParamMap } from "@angular/router";
 import { switchMap } from "rxjs/operators";
 import { StorageService } from "src/app/services/storage.service";
@@ -29,11 +29,11 @@ export class NewProfileComponent implements OnInit {
   }
   ngOnInit() {
     this.route.paramMap.subscribe(res => (this.temp = res));
-    this.form["authId"] = this.temp.params.id;
-    this.user = this.route.paramMap.pipe(
-      switchMap((params: ParamMap) =>
-        this.userService.getById(params.get("id"))
-      )
-    );
+    this.form.id = this.temp.params.id;
+    // this.user = this.route.paramMap.pipe(
+    //   switchMap((params: ParamMap) =>
+    //     this.userService.getById(params.get("id"))
+    //   )
+    // );
   }
 }

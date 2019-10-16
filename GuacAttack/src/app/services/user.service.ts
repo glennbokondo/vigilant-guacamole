@@ -1,5 +1,5 @@
 import { Injectable } from "@angular/core";
-import { User } from "../classes/user.class";
+import { User } from "../models/user.model";
 import { Observable, of } from "rxjs";
 import { AngularFireDatabase, AngularFireObject } from "@angular/fire/database";
 import { take } from "rxjs/operators";
@@ -35,9 +35,9 @@ export class UserService {
   }
 
   create(object: User) {
-    object.id = this.db.createPushId();
+    object.uid = this.db.createPushId();
     let key = this.itemList.push(object).key;
-    object.id = key;
+    object.uid = key;
     this.itemList.update(key, object);
   }
 

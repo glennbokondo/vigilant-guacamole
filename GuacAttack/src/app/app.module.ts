@@ -17,12 +17,12 @@ import { AngularFireModule } from "@angular/fire";
 import { AngularFireDatabaseModule } from "@angular/fire/database";
 import { AngularFireStorageModule } from "@angular/fire/storage";
 import { AngularFireAuthModule } from "@angular/fire/auth";
+import { AngularFirestoreModule } from '@angular/fire/firestore';
 import { LoginComponent } from "./components/login/login.component";
 import { FormsModule } from "@angular/forms";
 import { AuthService } from './services/auth.service';
 import { NewProfileComponent } from './components/new-profile/new-profile.component';
-import { Ng2ImgMaxModule } from 'ng2-img-max';
-import { Ng2ImgToolsModule } from 'ng2-img-tools';
+import { UserProfileComponent } from './components/user-profile/user-profile.component';
 
 @NgModule({
   declarations: [
@@ -34,20 +34,20 @@ import { Ng2ImgToolsModule } from 'ng2-img-tools';
     SearchListComponent,
     ProfileSettingsComponent,
     LoginComponent,
-    NewProfileComponent
+    NewProfileComponent,
+    UserProfileComponent
   ],
   imports: [
     BrowserModule,
     BrowserAnimationsModule,
     MaterialModule,
+    FormsModule,
     AngularFireModule.initializeApp(environment.firebaseConfig, "guacattack"),
     AngularFireDatabaseModule,
     AngularFireStorageModule,
+    AngularFirestoreModule,
     AngularFireAuthModule,
-    FormsModule,
     AppRoutingModule,
-    Ng2ImgMaxModule,
-    Ng2ImgToolsModule
   ],
   providers: [AuthService],
   bootstrap: [AppComponent]

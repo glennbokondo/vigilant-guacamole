@@ -2,8 +2,6 @@ import { Injectable } from "@angular/core";
 import { AngularFireStorage } from "@angular/fire/storage";
 import { finalize } from "rxjs/operators";
 import { Observable } from "rxjs";
-import { Ng2ImgMaxService } from "ng2-img-max";
-import { Ng2ImgToolsService } from "ng2-img-tools";
 
 @Injectable({
   providedIn: "root"
@@ -13,26 +11,16 @@ export class StorageService {
   downloadURL: Observable<string>;
   uploadedImage: File;
   fileName: any;
+  selectedFile: any;
   constructor(
     private storage: AngularFireStorage,
-    private ng2ImgMax: Ng2ImgMaxService,
-    private ng2ImgToolsService: Ng2ImgToolsService
   ) {}
-  uploadFile(event) {
-    let file = event.target.files[0];
-    console.log(file);
-    this.fileName = file.name;
-    this.ng2ImgToolsService.resize([file], 50, 50).subscribe(
-      result => {
-        this.uploadedImage = new File([result], result.name);
-      },
-      error => {
-        console.log("😢 Oh no!", error);
-      }
-    );
+  async uploadFile(event) {
+    const file = event.target.files[0];
     const filePath = `tempFile${this.fileName}`;
     const fileRef = this.storage.ref(filePath);
-    const task = this.storage.upload(filePath, file);
+    const task = await this.storage.upload(filePath, file).then(async res => await res.ref.getDownloadURL());
+    console.log(task);
 
     // observe percentage changes
     this.uploadPercent = task.percentageChanges();
@@ -40,6 +28,43 @@ export class StorageService {
     task
       .snapshotChanges()
       .pipe(finalize(() => (this.downloadURL = fileRef.getDownloadURL())))
-      .subscribe();
+      .subscribe(res => console.log(res));
+
+      // if(task.includes("jpg")){
+      //   let first = task.split(".jpg",1);
+      //   let second = task.split(".jpg", 2).splice(1);
+        // this.plant.imageUrl = first.toString() +"_400x400.jpg" + second.toString();
+        // this.plantService.update(this.plantId, this.plant);
+        // this.ngOnInit();
+      // }
+      // if(url.includes("png")){
+      //   let first = url.split(".png",1);
+      //   let second = url.split(".png", 2).splice(1);
+        // this.plant.imageUrl = first.toString() +"_400x400.png" + second.toString();
+        // this.plantService.update(this.plantId, this.plant);
+        // this.ngOnInit();
+      // }
   }
+
+  // async  onUpload(){
+  //   // upload image to firebase storage
+  //    const file = this.selectedFile;
+  //    const filePath = this.selectedFile.name;
+  //    const url = await this.storage.upload(filePath, file).then(async res => await res.ref.getDownloadURL());
+  //    if(url.includes("jpg")){
+  //      let first = url.split(".jpg",1);
+  //      let second = url.split(".jpg", 2).splice(1);
+  //      this.plant.imageUrl = first.toString() +"_400x400.jpg" + second.toString();
+  //      this.plantService.update(this.plantId, this.plant);
+  //      this.ngOnInit();
+  //    }
+  //    if(url.includes("png")){
+  //      let first = url.split(".png",1);
+  //      let second = url.split(".png", 2).splice(1);
+  //      this.plant.imageUrl = first.toString() +"_400x400.png" + second.toString();
+  //      this.plantService.update(this.plantId, this.plant);
+  //      this.ngOnInit();
+  //    }
+  //    // refresh page to load in images
+  //  }
 }

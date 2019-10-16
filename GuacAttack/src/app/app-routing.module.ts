@@ -7,14 +7,16 @@ import { ProfileSettingsComponent } from './components/profile-settings/profile-
 import { SearchListComponent } from './components/search-list/search-list.component';
 import { LoginComponent } from './components/login/login.component';
 import { NewProfileComponent } from './components/new-profile/new-profile.component';
+import { AuthGuard } from './auth.guard';
+import { UserProfileComponent } from './components/user-profile/user-profile.component';
 
 const routes: Routes = [
   { path: "home", component: HomeComponent },
   { path: '',   redirectTo: '/home', pathMatch: 'full' },
-  { path: "login", component: LoginComponent },
+  { path: "login", component: UserProfileComponent },
   { path: "example", component: ExampleComponent },
   { path: "profile/:id", component: ProfileComponent },
-  { path: "profile", component: ProfileComponent },
+  { path: "profile", component: ProfileComponent, canActivate: [AuthGuard] },
   { path: "profile/new/:id", component: NewProfileComponent },
   { path: "profile-settings/:id", component: ProfileSettingsComponent },
   { path: "profile-settings", component: ProfileSettingsComponent },

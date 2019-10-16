@@ -1,25 +1,40 @@
 import { Injectable } from '@angular/core';
-import { AngularFireAuth } from "@angular/fire/auth";
+import { Router } from '@angular/router';
+import { User } from '../../app/models/user.model';
+
+import { auth } from 'firebase/app';
+import { AngularFireAuth } from '@angular/fire/auth';
+import { AngularFirestore, AngularFirestoreDocument } from '@angular/fire/firestore';
+
+import { Observable, of } from 'rxjs';
+import { switchMap } from 'rxjs/operators';
+
 
 @Injectable({
   providedIn: 'root'
 })
 export class AuthService {
-  constructor(public afAuth: AngularFireAuth) {}
-  currentUser2: any;
-  currentUser(){
-    return {...this.currentUser2};
-  }
-  amIloggedIn(){
-    if(this.afAuth.user){
-      return true;
-    } else {
-      return false;
+  user$: Observable<User>;
+
+    constructor(
+        private afAuth: AngularFireAuth,
+        private afs: AngularFirestore,
+        private router: Router
+    ) {
+      // Get the auth state, then fetch the Firestore user document or return null
+      this.user$ = this.afAuth.authState.pipe(
+        switchMap(user => {
+            // Logged in
+          if (user) {
+            return this.afs.doc<User>(`users/${user.uid}`).valueChanges();
+          } else {
+            // Logged out
+            return of(null);
+          }
+        })
+      )
     }
-  }
-  showMeUser(){
-    return this.afAuth.user;
-  }
+ 
   register(email: string, password: string) {
     this.afAuth.auth
       .createUserWithEmailAndPassword(email, password)
@@ -35,8 +50,8 @@ export class AuthService {
       });
   }
 
-  async login(email: string, password: string) {
-    await this.afAuth.auth
+  async signIn(email: string, password: string) {
+    const credential = await this.afAuth.auth
       .signInWithEmailAndPassword(email, password)
       .catch(function(error) {
         var errorCode = error.code;
@@ -47,10 +62,26 @@ export class AuthService {
           alert(errorMessage);
         }
       });
+      if(credential){
+        return this.updateUserData(credential.user);
+      }
   }
 
-  logout() {
-    this.afAuth.auth.signOut();
+  private updateUserData(user) {
+    // Sets user data to firestore on login
+    const userRef: AngularFirestoreDocument<User> = this.afs.doc(`users/${user.uid}`);
+    const data = { 
+      uid: user.uid, 
+      email: user.email, 
+      displayName: user.displayName, 
+      photoURL: user.photoURL
+    } 
+    return userRef.set(data, { merge: true })
+  }
+
+  async signOut() {
+    await this.afAuth.auth.signOut();
+    this.router.navigate(['/']);
   }
 
   updateProfile(payload?: any) {
