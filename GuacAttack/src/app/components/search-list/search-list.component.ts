@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { UserService } from '../../services/user.service';
-import { User } from '../../classes/user.class';
+import { User } from '../../models/user.model';
 
 @Component({
   selector: 'app-search-list',
@@ -12,11 +12,9 @@ export class SearchListComponent implements OnInit {
   constructor(private userService: UserService) { }
 
   users: any;
-  displayedColumns = ['id', 'username', 'firstName', 'lastName', 'email']
-
+  displayedColumns = ['displayName', 'firstName', 'lastName', 'email']
   async getUsers() {
     this.users = await this.userService.getAll();
-    console.log(this.users);
   }
 
   createUser(user: User): void {

@@ -1,6 +1,5 @@
 import { Injectable } from "@angular/core";
-import { User } from "../classes/user.class";
-import { USERS } from "../components/mock-data/mock-users";
+import { User } from "../models/user.model";
 import { Observable, of } from "rxjs";
 import { AngularFireDatabase, AngularFireObject } from "@angular/fire/database";
 import { take } from "rxjs/operators";
@@ -26,11 +25,19 @@ export class UserService {
       .pipe(take(1))
       .toPromise();
   }
+  
+  async getById(id: string): Promise<any> {
+    return await this.db
+      .object<User>(this.database + "/" + id)
+      .valueChanges()
+      .pipe(take(1))
+      .toPromise();
+  }
 
   create(object: User) {
-    object.id = this.db.createPushId();
+    object.uid = this.db.createPushId();
     let key = this.itemList.push(object).key;
-    object.id = key;
+    object.uid = key;
     this.itemList.update(key, object);
   }
 
@@ -44,9 +51,5 @@ export class UserService {
 
   deleteAll() {
     this.itemList.remove();
-  }
-
-  getUsers(): Observable<User[]> {
-    return of(USERS);
   }
 }
