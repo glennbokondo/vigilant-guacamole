@@ -21,6 +21,8 @@ import { LoginComponent } from "./components/login/login.component";
 import { FormsModule } from "@angular/forms";
 import { AuthService } from './services/auth.service';
 import { NewProfileComponent } from './components/new-profile/new-profile.component';
+import { Ng2ImgMaxModule } from 'ng2-img-max';
+import { Ng2ImgToolsModule } from 'ng2-img-tools';
 
 @NgModule({
   declarations: [
@@ -44,6 +46,8 @@ import { NewProfileComponent } from './components/new-profile/new-profile.compon
     AngularFireAuthModule,
     FormsModule,
     AppRoutingModule,
+    Ng2ImgMaxModule,
+    Ng2ImgToolsModule
   ],
   providers: [AuthService],
   bootstrap: [AppComponent]

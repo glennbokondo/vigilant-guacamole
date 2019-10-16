@@ -1,6 +1,5 @@
 import { Injectable } from "@angular/core";
 import { User } from "../classes/user.class";
-import { USERS } from "../components/mock-data/mock-users";
 import { Observable, of } from "rxjs";
 import { AngularFireDatabase, AngularFireObject } from "@angular/fire/database";
 import { take } from "rxjs/operators";
@@ -52,9 +51,5 @@ export class UserService {
 
   deleteAll() {
     this.itemList.remove();
-  }
-
-  getUsers(): Observable<User[]> {
-    return of(USERS);
   }
 }

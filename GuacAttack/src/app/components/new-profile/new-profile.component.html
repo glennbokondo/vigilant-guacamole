@@ -11,4 +11,5 @@
 <mat-form-field>
         <input matInput placeholder="Last Name" [(ngModel)]="form.lastName">
 </mat-form-field><br>
+<input type="file" (change)="uploadFile($event)">
 <button primary mat-raised-button (click)="save()">Save</button>
