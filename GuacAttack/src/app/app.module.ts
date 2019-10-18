@@ -47,7 +47,7 @@ import { UserProfileComponent } from './components/user-profile/user-profile.com
     AngularFireStorageModule,
     AngularFirestoreModule,
     AngularFireAuthModule,
-    AppRoutingModule,
+    AppRoutingModule
   ],
   providers: [AuthService],
   bootstrap: [AppComponent]

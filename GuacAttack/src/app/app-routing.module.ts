@@ -16,10 +16,10 @@ const routes: Routes = [
   { path: "login", component: UserProfileComponent },
   { path: "example", component: ExampleComponent },
   { path: "profile/:id", component: ProfileComponent },
-  { path: "profile", component: ProfileComponent, canActivate: [AuthGuard] },
+  { path: "profile", component: ProfileComponent },
   { path: "profile/new/:id", component: NewProfileComponent },
   { path: "profile-settings/:id", component: ProfileSettingsComponent },
-  { path: "profile-settings", component: ProfileSettingsComponent },
+  { path: "profile-settings", component: ProfileSettingsComponent},
   { path: "search", component: SearchListComponent },
   { path: '**', component: HomeComponent }
 ];

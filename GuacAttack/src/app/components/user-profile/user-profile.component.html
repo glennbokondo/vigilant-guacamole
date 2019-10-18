@@ -4,7 +4,6 @@
 
 <!-- User NOT logged in -->
 <ng-template #guest>
-<h3>Howdy, GUEST</h3>
 <p>Login to get started...</p>
 
 <mat-form-field>
@@ -26,7 +25,7 @@
 <!-- User logged in -->
 <ng-template #authenticated>
 <div *ngIf="auth.user$ | async as user">
-    <h3>Howdy, {{ user.displayName }}</h3>
+    <h3>Welcome {{ user.displayName }}</h3>
     <img  [src]="user.photoURL">
     <p>UID: {{ user.uid }}</p>
     <button (click)="auth.signOut()">Logout</button>

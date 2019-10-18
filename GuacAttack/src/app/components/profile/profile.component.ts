@@ -11,13 +11,16 @@ import { switchMap } from 'rxjs/operators';
   styleUrls: ['./profile.component.sass']
 })
 export class ProfileComponent implements OnInit {
-  constructor(private userService: UserService, private authService: AuthService, private route: ActivatedRoute) { }
+  constructor(private auth: AuthService, private route: ActivatedRoute, private userService: UserService) { }
   user: any;
   routeId: any;
   temp: any;
   async ngOnInit() {
-    this.route.paramMap.subscribe(res => (this.temp = res));
-    this.routeId = this.temp.params.id;
-    this.user = await this.userService.getById(this.routeId);
+    const routeId = this.route.snapshot.params.id;
+    if(routeId){
+      this.user = await this.userService.getById(routeId);
+    } else {
+      this.user = await this.auth.findMe();
+    }
   }
 }

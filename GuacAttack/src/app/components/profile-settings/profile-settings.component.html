@@ -1,14 +1,18 @@
-<h2>Edit your profile</h2>
-<mat-form-field>
-        <input matInput placeholder="Email" [(ngModel)]="form.email">
-</mat-form-field><br>
-<mat-form-field>
-        <input matInput placeholder="Display Name" [(ngModel)]="form.displayName">
-</mat-form-field><br>
-<mat-form-field>
-        <input matInput placeholder="First Name" [(ngModel)]="form.firstName">
-</mat-form-field><br>
-<mat-form-field>
-        <input matInput placeholder="Last Name" [(ngModel)]="form.lastName">
-</mat-form-field><br>
-<button primary mat-raised-button (click)="save()">Save</button>
+<!-- <div *ngIf="auth.user$ | async as user">
+        <h2>Edit your profile {{user.email}}</h2>
+        <mat-form-field>
+                <input matInput placeholder="Email" [(ngModel)]="form.email">
+        </mat-form-field><br>
+        <mat-form-field>
+                <input matInput placeholder="Display Name" [(ngModel)]="form.displayName">
+        </mat-form-field><br>
+        <mat-form-field>
+                <input matInput placeholder="First Name" [(ngModel)]="form.firstName">
+        </mat-form-field><br>
+        <mat-form-field>
+                <input matInput placeholder="Last Name" [(ngModel)]="form.lastName">
+        </mat-form-field><br>
+        <button primary mat-raised-button (click)="auth.updateUserData()">Save</button>
+</div> -->
+<div *ngIf="user">
+{{user|json}}</div>

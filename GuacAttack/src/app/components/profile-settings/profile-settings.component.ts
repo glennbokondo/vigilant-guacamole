@@ -1,7 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { UserService } from '../../services/user.service';
-import { Router, ActivatedRoute, ParamMap } from '@angular/router';
-import { switchMap } from 'rxjs/operators';
+import { ActivatedRoute } from '@angular/router';
+import { AuthService } from 'src/app/services/auth.service';
+import { User } from 'src/app/models/user.model';
 
 @Component({
   selector: 'app-profile-settings',
@@ -9,21 +10,22 @@ import { switchMap } from 'rxjs/operators';
   styleUrls: ['./profile-settings.component.sass']
 })
 export class ProfileSettingsComponent implements OnInit {
-  user: any
+  user: User;
   form: any;
   test: any;
-  constructor(private userService: UserService, private route: ActivatedRoute) { }
+  newUser: boolean = false;
+  constructor(private route: ActivatedRoute, public auth: AuthService, public userService: UserService) { }
   save(){
-
-    this.userService.create(this.form);
+    this.auth.updateProfile
   }
-  ngOnInit() {
-    this.user = this.route.paramMap.pipe(
-      switchMap((params: ParamMap) =>
-        this.userService.getById(params.get('id')))
-    );
-    this.userService.getById("-LrEIDrZpAuYYC_OX4O_").then(res => this.form = res);
-    // this.form = new User();
+  async ngOnInit() {
+    const routeId = this.route.snapshot.params.id;
+    if(routeId){
+      this.newUser = true;
+      this.user = await this.userService.getById(routeId);
+    } else {
+      this.user = await this.auth.findMe();
+    }
   }
 
 }

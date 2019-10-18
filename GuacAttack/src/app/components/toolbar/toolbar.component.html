@@ -10,7 +10,7 @@
   <mat-menu #appMenu="matMenu">
     <ng-template matMenuContent>
       <button routerLink="/profile-settings" mat-menu-item><mat-icon>edit</mat-icon>Profile Settings</button>
-      <button mat-menu-item (click)="auth.logout()"><mat-icon>exit_to_app</mat-icon>Logout</button>
+      <button mat-menu-item (click)="auth.signOut()"><mat-icon>exit_to_app</mat-icon>Logout</button>
     </ng-template>
   </mat-menu>
 
