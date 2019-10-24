@@ -3,7 +3,11 @@ export interface User {
     email: string;
     photoURL?: string;
     displayName?: string;
-    myCustomData?: {};
+    name?: {
+      first?: string,
+      last?: string,
+    }
+    bio?: string;
     // firstName: string;
     // lastName: string;
   }
