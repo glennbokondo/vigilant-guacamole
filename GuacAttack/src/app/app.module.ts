@@ -24,6 +24,7 @@ import { AuthService } from './services/auth.service';
 import { NewProfileComponent } from './components/new-profile/new-profile.component';
 import { UserProfileComponent } from './components/user-profile/user-profile.component';
 import { ContactComponent } from './components/contact/contact.component';
+import { FooterComponent } from './components/footer/footer.component';
 
 @NgModule({
   declarations: [
@@ -37,7 +38,8 @@ import { ContactComponent } from './components/contact/contact.component';
     LoginComponent,
     NewProfileComponent,
     UserProfileComponent,
-    ContactComponent
+    ContactComponent,
+    FooterComponent
   ],
   imports: [
     BrowserModule,

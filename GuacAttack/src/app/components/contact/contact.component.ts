@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { MatSnackBar } from '@angular/material/snack-bar';
 
 @Component({
   selector: 'app-contact',
@@ -6,8 +7,12 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./contact.component.sass']
 })
 export class ContactComponent implements OnInit {
-
-  constructor() { }
+  form: any = {}
+  sendMessage: string = "You've just sent an e-mail to North-Korea. Good luck!"
+  constructor(private _snackBar: MatSnackBar) { }
+  openSnackBar() {
+    this._snackBar.open(this.sendMessage, "Thanks...", {duration: 3000});
+  }
 
   ngOnInit() {
   }
