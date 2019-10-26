@@ -1,20 +1,33 @@
-<mat-card>
-    <mat-card-title>Profile</mat-card-title>
-    <p class="card-label">ID</p>
-    <mat-card-content>
-        {{user.id}}
-    </mat-card-content>
-    <p class="card-label">Username</p>
-    <mat-card-content>
-        {{user.username}}
-    </mat-card-content>
-    <p class="card-label">Name</p>
-    <mat-card-content>
-        {{user.firstName}}&nbsp;{{user.lastName}}
-    </mat-card-content>
-    <p class="card-label">Email</p>
-    <mat-card-content>
-        {{user.email}}
-    </mat-card-content>
-    <mat-divider></mat-divider>
-</mat-card>
+<div class="container">
+    <mat-grid-list cols="4" rowHeight="2:1" gutterSize="10">
+        <mat-grid-tile class="tile" colspan="1" rowspan="2">
+            <mat-card class="card pink">
+                <mat-card-title>Profile</mat-card-title>
+                <p class="card-label">ID</p>
+                <mat-card-content>
+                    {{user.id}}
+                </mat-card-content>
+                <p class="card-label">Username</p>
+                <mat-card-content>
+                    {{user.username}}
+                </mat-card-content>
+                <p class="card-label">Name</p>
+                <mat-card-content>
+                    {{user.firstName}}&nbsp;{{user.lastName}}
+                </mat-card-content>
+                <p class="card-label">Email</p>
+                <mat-card-content>
+                    {{user.email}}
+                </mat-card-content>
+                <mat-divider></mat-divider>
+            </mat-card>
+        </mat-grid-tile>
+        <mat-grid-tile class="tile" colspan="3" rowspan="2">
+            <mat-tab-group class="content red">
+                <mat-tab label="Bio">I am alive and I am human.</mat-tab>
+                <mat-tab label="Skills">I have a set of extraordinary skills.</mat-tab>
+                <mat-tab label="Contact">You can contact me in several ways.</mat-tab>
+            </mat-tab-group>
+        </mat-grid-tile>
+    </mat-grid-list>
+</div>
