@@ -23,6 +23,7 @@ import { FormsModule } from "@angular/forms";
 import { AuthService } from './services/auth.service';
 import { NewProfileComponent } from './components/new-profile/new-profile.component';
 import { UserProfileComponent } from './components/user-profile/user-profile.component';
+import { ContactComponent } from './components/contact/contact.component';
 
 @NgModule({
   declarations: [
@@ -35,7 +36,8 @@ import { UserProfileComponent } from './components/user-profile/user-profile.com
     ProfileSettingsComponent,
     LoginComponent,
     NewProfileComponent,
-    UserProfileComponent
+    UserProfileComponent,
+    ContactComponent
   ],
   imports: [
     BrowserModule,
