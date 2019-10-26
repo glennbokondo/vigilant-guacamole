@@ -15,56 +15,15 @@ export class StorageService {
   constructor(
     private storage: AngularFireStorage,
   ) {}
+  
   async uploadFile(event) {
+    console.log(event, event.target.files);
     const file = event.target.files[0];
-    const filePath = `tempFile${this.fileName}`;
+    const filePath = file.name;
     const fileRef = this.storage.ref(filePath);
-    const task = await this.storage.upload(filePath, file).then(async res => await res.ref.getDownloadURL());
-    console.log(task);
-
-    // observe percentage changes
-    this.uploadPercent = task.percentageChanges();
-    // get notified when the download URL is available
-    task
-      .snapshotChanges()
-      .pipe(finalize(() => (this.downloadURL = fileRef.getDownloadURL())))
-      .subscribe(res => console.log(res));
-
-      // if(task.includes("jpg")){
-      //   let first = task.split(".jpg",1);
-      //   let second = task.split(".jpg", 2).splice(1);
-        // this.plant.imageUrl = first.toString() +"_400x400.jpg" + second.toString();
-        // this.plantService.update(this.plantId, this.plant);
-        // this.ngOnInit();
-      // }
-      // if(url.includes("png")){
-      //   let first = url.split(".png",1);
-      //   let second = url.split(".png", 2).splice(1);
-        // this.plant.imageUrl = first.toString() +"_400x400.png" + second.toString();
-        // this.plantService.update(this.plantId, this.plant);
-        // this.ngOnInit();
-      // }
+    const task = await this.storage.upload(filePath, file)
+    .then(async res => await res.ref.getDownloadURL());
+    console.log('TASK', task);
+    // this.uploadPercent = task.percentageChanges();
   }
-
-  // async  onUpload(){
-  //   // upload image to firebase storage
-  //    const file = this.selectedFile;
-  //    const filePath = this.selectedFile.name;
-  //    const url = await this.storage.upload(filePath, file).then(async res => await res.ref.getDownloadURL());
-  //    if(url.includes("jpg")){
-  //      let first = url.split(".jpg",1);
-  //      let second = url.split(".jpg", 2).splice(1);
-  //      this.plant.imageUrl = first.toString() +"_400x400.jpg" + second.toString();
-  //      this.plantService.update(this.plantId, this.plant);
-  //      this.ngOnInit();
-  //    }
-  //    if(url.includes("png")){
-  //      let first = url.split(".png",1);
-  //      let second = url.split(".png", 2).splice(1);
-  //      this.plant.imageUrl = first.toString() +"_400x400.png" + second.toString();
-  //      this.plantService.update(this.plantId, this.plant);
-  //      this.ngOnInit();
-  //    }
-  //    // refresh page to load in images
-  //  }
 }
