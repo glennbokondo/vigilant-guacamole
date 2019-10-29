@@ -4,7 +4,7 @@
             <mat-card class="card pink">
                 <mat-card-title><button *ngIf="myProfile && !editable" (click)="editable = !editable">edit</button>Profile 
                     <button
-                        *ngIf="editable" (click)="saveProfileChanges()">Save</button>
+                        *ngIf="editable" (click)="saveProfileChanges()">Save</button> 
                     <button
                     *ngIf="editable" (click)="cancelProfileChanges()">Cancel</button>
                     </mat-card-title>
