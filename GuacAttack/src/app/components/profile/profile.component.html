@@ -1,45 +1,66 @@
 <div class="container">
     <mat-grid-list *ngIf="user && skillCollection" cols="4" rowHeight="2:1" gutterSize="10">
-        <mat-grid-tile class="tile" colspan="1" rowspan="2">
+        <mat-grid-tile class="tile" colspan="1" rowspan="10">
             <mat-card class="card pink">
-                <mat-card-title><button *ngIf="myProfile && !editable" (click)="editable = !editable">edit</button>Profile 
-                    <button
-                        *ngIf="editable" (click)="saveProfileChanges()">Save</button> 
-                    <button
-                    *ngIf="editable" (click)="cancelProfileChanges()">Cancel</button>
-                    </mat-card-title>
+                <mat-card-title>Profile&nbsp;<button mat-icon-button *ngIf="myProfile && !editable"
+                        (click)="editable = !editable">
+                        <mat-icon>edit</mat-icon>
+                    </button>
+                    <button mat-icon-button *ngIf="editable" (click)="saveProfileChanges()">
+                        <mat-icon>save</mat-icon>
+                    </button>
+                    <button mat-icon-button *ngIf="editable" (click)="cancelProfileChanges()">
+                        <mat-icon>clear</mat-icon>
+                    </button>
+                </mat-card-title>
                 <img class="profile-pic" [src]=user.thumb256URL>
-                <p class="card-label">ID</p>
-                <!-- <mat-card-content>
-                    {{user.id}}
-                </mat-card-content>
-                <p class="card-label">Username</p>
-                <mat-card-content>
-                    {{user.username}}
-                </mat-card-content>
-                <p class="card-label">Name</p>
-                <mat-card-content>
-                    {{user.firstName}}&nbsp;{{user.lastName}}
-                </mat-card-content>
-                <p class="card-label">Email</p>
-                <mat-card-content>
-                    {{user.email}}
-                    {{user.thumb64Path}}
-                    {{user.thumb64URL}}
-                    {{user.email}}
-                </mat-card-content> -->
+                <input *ngIf="editable" type="file" (change)="uploadFile($event)">
                 <mat-divider></mat-divider>
+                <mat-card-content *ngIf="!editable">
+                    <p class="card-label">Display Name</p>
+                    <p>{{user.displayName}}</p>
+                    <mat-divider></mat-divider>
+                    <p *ngIf="!editable" class="card-label">Skills</p>
+                    <div *ngFor="let skill of user.skills">
+                        <img style="display: inline-block" [src]=skill.imgURL50>
+                    </div>
+                    <mat-divider></mat-divider>
+                    <p class="card-label">Name</p>
+                    <p *ngIf="!editable">{{user.name.first}}&nbsp;{{user.name.last}}</p>
+                    <mat-divider></mat-divider>
+                    <p class="card-label">Email</p>
+                    <p *ngIf="!editable">{{user.email}}</p>
+                </mat-card-content>
+                <mat-card-content *ngIf="editable">
+                        <mat-form-field>
+                                <input matInput placeholder="Display Name" [(value)]="profileData.displayName">
+                            </mat-form-field><br>
+                                <app-skill-select [(selected)]="profileData.skills" item="user" (onChange)="handleIt($event)"></app-skill-select><br>
+                            <mat-form-field>
+                                <input matInput placeholder="First Name" [(value)]="profileData.name.first">
+                            </mat-form-field><br>
+                            <mat-form-field>
+                                <input matInput placeholder="Last Name" [(value)]="profileData.name.last">
+                            </mat-form-field><br>
+                        <mat-form-field>
+                                <input matInput placeholder="Email" [(value)]="profileData.email">
+                            </mat-form-field><br>
+                </mat-card-content>
             </mat-card>
         </mat-grid-tile>
         <mat-grid-tile class="tile" colspan="3" rowspan="2">
             <mat-tab-group class="content red">
-                <mat-tab label="Bio" *ngIf="!editable">I am alive and I am human.</mat-tab>
-                <mat-tab label="Skills">I have a set of extraordinary skills.
-                    {{user.skills}}
-                    <img src={{skillCollection[0].img100URL}}>
+                <mat-tab label="Bio">
+                    <span *ngIf="!editable">{{user.bio}}</span>
+                    <span *ngIf="editable">Edit things here</span></mat-tab>
+                <mat-tab label="Skills">
+                    <app-image-list skill="user.skills"></app-image-list>
+
                     <app-skill-select *ngIf="editable" item="user" (onChange)="handleIt($event)"></app-skill-select>
                 </mat-tab>
-                <mat-tab label="Contact">You can contact me in several ways.</mat-tab>
+                <mat-tab label="Contact">
+                    <mat-card *ngIf="editable"></mat-card>You can contact me in several ways.
+                </mat-tab>
             </mat-tab-group>
         </mat-grid-tile>
         <mat-grid-tile class="tile" colspan="4" rowspan="5">My job is filling space. How am I doing?</mat-grid-tile>

@@ -16,12 +16,6 @@ export class HomeComponent implements OnInit {
   }
   async downloadFile(){
     this.image = await this.storageService.fetchFile('thumb@128_Capture.PNG');
-    // this.image.subscribe(url => {
-    //     console.log('IM DOING IT', url);
-    //     this.test = url;
-    //     console.log('FETCHRESULT THIS.TEST', this.test);
-    //     return this.test;
-    // })
     console.log('image', this.image)
   }
   ngOnInit() {

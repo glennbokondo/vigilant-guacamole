@@ -17,6 +17,7 @@ import { MatSnackBarModule } from "@angular/material/snack-bar";
 import { MatMenuModule } from "@angular/material/menu";
 import {MatGridListModule} from '@angular/material/grid-list';
 import { MatTabsModule } from '@angular/material';
+import {MatExpansionModule} from '@angular/material/expansion'
 
 @NgModule({
   imports: [
@@ -38,6 +39,7 @@ import { MatTabsModule } from '@angular/material';
     MatMenuModule,
     MatGridListModule,
     MatTabsModule,
+    MatExpansionModule
   ],
   exports: [
     CommonModule,
@@ -57,7 +59,8 @@ import { MatTabsModule } from '@angular/material';
     MatSnackBarModule,
     MatMenuModule,
     MatGridListModule,
-    MatTabsModule
+    MatTabsModule,
+    MatExpansionModule
   ],
   declarations: []
 })
