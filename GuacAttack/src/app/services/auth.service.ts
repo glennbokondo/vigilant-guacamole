@@ -98,6 +98,37 @@ export class AuthService {
     return await userRef.set(data, { merge: true });
   }
 
+  async fetchSkill(skill: any) {
+    return await this.afs
+        .doc(`skills/${skill}`)
+        .get()
+        .pipe(
+          take(1),
+          map(req =>req.data())
+        )
+        .toPromise();
+  }
+
+  async addSkillToUser(user: User, newSkill: string){
+    const userRef: AngularFirestoreDocument<User> = this.afs.doc(
+      `users/${user.uid}`
+    );
+    console.log('USERSKILLS', user.skills)
+    const findResult = user.skills.filter(skill => skill.name === newSkill);
+    console.log('FINDRESULT', findResult);
+    if(findResult.length !== 0){
+      return;
+    } else {
+      const index = user.skills.findIndex(skill => skill === newSkill);
+      if(index){
+        user.skills.splice(index, 1);
+        user.skills.push(await this.fetchSkill(newSkill));
+      }
+    }
+      console.log('AFTER PUSH', user.skills)
+    return await userRef.set(user, { merge: true });
+  }
+
   fetchUserData(uid: string) {
     var userRef = this.afs.collection("users").doc(uid);
     userRef.get().subscribe(doc => {

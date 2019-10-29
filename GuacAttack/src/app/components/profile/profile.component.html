@@ -1,11 +1,16 @@
 <div class="container">
-    <mat-grid-list cols="4" rowHeight="2:1" gutterSize="10">
+    <mat-grid-list *ngIf="user && skillCollection" cols="4" rowHeight="2:1" gutterSize="10">
         <mat-grid-tile class="tile" colspan="1" rowspan="2">
             <mat-card class="card pink">
-                <mat-card-title>Profile</mat-card-title>
-                <img class="profile-pic" src={{user.thumb256URL}}>
+                <mat-card-title><button *ngIf="myProfile && !editable" (click)="editable = !editable">edit</button>Profile 
+                    <button
+                        *ngIf="editable" (click)="saveProfileChanges()">Save</button>
+                    <button
+                    *ngIf="editable" (click)="cancelProfileChanges()">Cancel</button>
+                    </mat-card-title>
+                <img class="profile-pic" [src]=user.thumb256URL>
                 <p class="card-label">ID</p>
-                <mat-card-content>
+                <!-- <mat-card-content>
                     {{user.id}}
                 </mat-card-content>
                 <p class="card-label">Username</p>
@@ -22,14 +27,18 @@
                     {{user.thumb64Path}}
                     {{user.thumb64URL}}
                     {{user.email}}
-                </mat-card-content>
+                </mat-card-content> -->
                 <mat-divider></mat-divider>
             </mat-card>
         </mat-grid-tile>
         <mat-grid-tile class="tile" colspan="3" rowspan="2">
             <mat-tab-group class="content red">
-                <mat-tab label="Bio">I am alive and I am human.</mat-tab>
-                <mat-tab label="Skills">I have a set of extraordinary skills.</mat-tab>
+                <mat-tab label="Bio" *ngIf="!editable">I am alive and I am human.</mat-tab>
+                <mat-tab label="Skills">I have a set of extraordinary skills.
+                    {{user.skills}}
+                    <img src={{skillCollection[0].img100URL}}>
+                    <app-skill-select *ngIf="editable" item="user" (onChange)="handleIt($event)"></app-skill-select>
+                </mat-tab>
                 <mat-tab label="Contact">You can contact me in several ways.</mat-tab>
             </mat-tab-group>
         </mat-grid-tile>

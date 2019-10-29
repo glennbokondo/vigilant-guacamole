@@ -25,6 +25,7 @@ import { NewProfileComponent } from './components/new-profile/new-profile.compon
 import { UserProfileComponent } from './components/user-profile/user-profile.component';
 import { ContactComponent } from './components/contact/contact.component';
 import { FooterComponent } from './components/footer/footer.component';
+import { SkillSelectComponent } from './components/skill-select/skill-select.component';
 
 @NgModule({
   declarations: [
@@ -39,7 +40,8 @@ import { FooterComponent } from './components/footer/footer.component';
     NewProfileComponent,
     UserProfileComponent,
     ContactComponent,
-    FooterComponent
+    FooterComponent,
+    SkillSelectComponent
   ],
   imports: [
     BrowserModule,
