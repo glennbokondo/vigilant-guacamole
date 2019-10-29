@@ -4,6 +4,7 @@ import { User } from "../../models/user.model";
 import { AuthService } from "src/app/services/auth.service";
 import { Router, ActivatedRoute, ParamMap } from "@angular/router";
 import { switchMap } from "rxjs/operators";
+import { StorageService } from 'src/app/services/storage.service';
 
 @Component({
   selector: "app-profile",
@@ -14,7 +15,8 @@ export class ProfileComponent implements OnInit {
   constructor(
     private auth: AuthService,
     private route: ActivatedRoute,
-    private userService: UserService
+    private userService: UserService,
+    private storageService: StorageService
   ) {}
   user: any;
   routeId: any;
@@ -33,7 +35,10 @@ export class ProfileComponent implements OnInit {
         bio: "This is an example of a bio message"
       };
       console.log(this.user);
-      this.auth.foo(this.user);
+      this.auth.foo(this.user, this.user);
     }
+    await this.storageService.fetchFile(this.user.thumb64Path);
+    await this.storageService.fetchFile(this.user.thumb128Path);
+    await this.storageService.fetchFile(this.user.thumb256Path);
   }
 }

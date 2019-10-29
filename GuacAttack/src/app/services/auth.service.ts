@@ -90,22 +90,12 @@ export class AuthService {
     return userRef.set(data, { merge: true });
   }
 
-  foo(user: User) {
+  async foo(user: User, data: any) {
     const userRef: AngularFirestoreDocument<User> = this.afs.doc(
       `users/${user.uid}`
     );
-    const data = {
-      uid: user.uid,
-      email: user.email,
-      displayName: user.displayName,
-      photoURL: user.photoURL,
-      name: {
-        first: user.name.first,
-        last: user.name.last
-      },
-      bio: user.bio,
-    };
-    return userRef.set(data, { merge: true });
+    
+    return await userRef.set(data, { merge: true });
   }
 
   fetchUserData(uid: string) {

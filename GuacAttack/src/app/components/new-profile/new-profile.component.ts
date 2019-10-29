@@ -25,7 +25,7 @@ export class NewProfileComponent implements OnInit {
     this.router.navigate(["/profile", this.form.id]);
   }
   uploadFile(event) {
-    this.storageService.uploadFile(event);
+    this.storageService.uploadImage(event);
   }
   ngOnInit() {
     this.route.paramMap.subscribe(res => (this.temp = res));

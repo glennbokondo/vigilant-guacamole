@@ -1,4 +1,8 @@
 <mat-card><mat-card-title>Welcome to GuacAttack</mat-card-title></mat-card>
 
 <input type="file" (change)="uploadFile($event)">
-<!-- <img src="https://firebasestorage.googleapis.com/v0/b/volatile-guacamole.appspot.com/o/name-your-file-path-here?alt=media&token=2a15c00a-eae4-48bd-92bb-dae9dee5f024"> -->
+<button (click)="downloadFile()">Download</button>
+<img [(src)]="image">
+<img [(src)]="test">
+<img [(src)]="test2">
+<img src="https://firebasestorage.googleapis.com/v0/b/volatile-guacamole.appspot.com/o/thumb%40128_b4f68011906959.5625466168225.jpg?alt=media&token=039b9bc1-f1de-4cc5-8829-898920702757">

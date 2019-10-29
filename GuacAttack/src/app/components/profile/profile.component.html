@@ -3,6 +3,7 @@
         <mat-grid-tile class="tile" colspan="1" rowspan="2">
             <mat-card class="card pink">
                 <mat-card-title>Profile</mat-card-title>
+                <img class="profile-pic" src={{user.thumb256URL}}>
                 <p class="card-label">ID</p>
                 <mat-card-content>
                     {{user.id}}
@@ -17,6 +18,9 @@
                 </mat-card-content>
                 <p class="card-label">Email</p>
                 <mat-card-content>
+                    {{user.email}}
+                    {{user.thumb64Path}}
+                    {{user.thumb64URL}}
                     {{user.email}}
                 </mat-card-content>
                 <mat-divider></mat-divider>
