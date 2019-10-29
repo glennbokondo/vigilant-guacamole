@@ -4,6 +4,7 @@ import { User } from "../../models/user.model";
 import { AuthService } from "src/app/services/auth.service";
 import { Router, ActivatedRoute, ParamMap } from "@angular/router";
 import { switchMap } from "rxjs/operators";
+import { StorageService } from 'src/app/services/storage.service';
 
 @Component({
   selector: "app-profile",
@@ -14,26 +15,48 @@ export class ProfileComponent implements OnInit {
   constructor(
     private auth: AuthService,
     private route: ActivatedRoute,
-    private userService: UserService
+    private userService: UserService,
+    private storageService: StorageService
   ) {}
   user: any;
   routeId: any;
   temp: any;
+  skillCollection: any[] = [];
+  editable: boolean = false;
+  myProfile: boolean = false;
+  profileData: {}
+  handleIt(info: any){
+    console.log('HANDLING IT...', info);
+  }
+
+  saveProfileChanges(){
+    console.log("Saving");
+  }
+
+  cancelProfileChanges(){
+    this.profileData = this.user;
+    this.editable = false;
+  }
   async ngOnInit() {
     const routeId = this.route.snapshot.params.id;
     if (routeId) {
+      this.myProfile = false;
       this.user = await this.userService.getById(routeId);
     } else {
+      this.myProfile = true;
       this.user = await this.auth.findMe();
-      console.log(this.user);
-      this.user = {
-        ...this.user,
-        displayName: 'QRY91',
-        name: { first: "Glenn", last: "Bokondo" },
-        bio: "This is an example of a bio message"
-      };
-      console.log(this.user);
-      this.auth.foo(this.user);
+      this.profileData = this.user;
     }
+    // await this.storageService.fetchFile(this.user.thumb64Path);
+    // await this.storageService.fetchFile(this.user.thumb128Path);
+    // await this.storageService.fetchFile(this.user.thumb256Path);
+   
+    for(let skill of this.user.skills){
+       this.skillCollection.push(await this.auth.fetchSkill(skill));
+    }
+    console.log('TEMP', this.temp);
+    console.log('SKILLS', this.user.skills);
+    console.log('SKILLSARRAY', this.skillCollection);
+    this.auth.addSkillToUser(this.user, "HTML 5");
   }
 }

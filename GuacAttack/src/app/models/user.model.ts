@@ -8,6 +8,7 @@ export interface User {
       last?: string,
     }
     bio?: string;
+    skills?: any[];
     // firstName: string;
     // lastName: string;
   }

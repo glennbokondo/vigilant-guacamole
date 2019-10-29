@@ -9,6 +9,8 @@ import { LoginComponent } from './components/login/login.component';
 import { NewProfileComponent } from './components/new-profile/new-profile.component';
 import { AuthGuard } from './auth.guard';
 import { UserProfileComponent } from './components/user-profile/user-profile.component';
+import { ContactComponent } from './components/contact/contact.component';
+import { SkillSelectComponent } from './components/skill-select/skill-select.component';
 
 const routes: Routes = [
   { path: "home", component: HomeComponent },
@@ -21,6 +23,8 @@ const routes: Routes = [
   { path: "profile-settings/:id", component: ProfileSettingsComponent },
   { path: "profile-settings", component: ProfileSettingsComponent},
   { path: "search", component: SearchListComponent },
+  { path: "contact", component: ContactComponent },
+  { path: "select", component: SkillSelectComponent },
   { path: '**', component: HomeComponent }
 ];
 
