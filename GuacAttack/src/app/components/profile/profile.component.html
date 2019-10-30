@@ -39,32 +39,36 @@
         <mat-grid-tile class="tile" colspan="9" rowspan="3">
             <mat-tab-group class="content background-color">
                 <mat-tab label="Bio">
-                    <span *ngIf="!editable">{{user.bio}}</span>
-                    <span><textarea *ngIf="editable" matInput placeholder="Edit bio"
-                            [value]="profileData.bio"></textarea></span></mat-tab>
+                    <p *ngIf="!editable" class="tab-content">{{user.bio}}</p>
+                    <span>
+                        <textarea *ngIf="editable" matInput placeholder="Edit bio"
+                            [(ngModel)]="profileData.bio"></textarea>
+                    </span>
+                </mat-tab>
                 <mat-tab label="Skills">
-                    <mat-accordion *ngIf="!editable">
-                        <mat-expansion-panel *ngFor="let skill of user.skills">
-                            <mat-expansion-panel-header>
-                                <mat-panel-title>
-                                    <img [src]="skill.imgURL50">
-                                </mat-panel-title>
-                                <mat-panel-description>
-                                    {{skill.experience}}
-                                </mat-panel-description>
-                            </mat-expansion-panel-header>
-                            <p>{{skill.description}}</p>
-                        </mat-expansion-panel>
-                    </mat-accordion>
+                    <span *ngIf="!editable">
+                        <mat-accordion>
+                            <mat-expansion-panel *ngFor="let skill of user.skills">
+                                <mat-expansion-panel-header>
+                                    <mat-panel-title class="align">
+                                        <img [src]="skill.imgURL50">&nbsp;{{skill.experience}}
+                                    </mat-panel-title>
+                                </mat-expansion-panel-header>
+                                <p>{{skill.description}}</p>
+                            </mat-expansion-panel>
+                        </mat-accordion>
+                    </span>
                     <span *ngIf="editable">
-                    <mat-accordion>
+                        <mat-accordion>
                             <mat-expansion-panel *ngFor="let skill of profileData.skills">
                                 <mat-expansion-panel-header>
-                                    <mat-panel-title>
-                                        <img [src]="skill.imgURL50">
+                                    <mat-panel-title class="align">
+                                        <img [src]="skill.imgURL50">&nbsp;{{skill.experience}}
                                     </mat-panel-title>
-                                    <mat-panel-description>
-                                        {{skill.experience}}
+                                    <mat-panel-description class="align">
+                                            <button mat-icon-button (click)="removeSkill(skill)">Remove&nbsp;skill&nbsp;
+                                                    <mat-icon>clear</mat-icon>
+                                                </button>
                                     </mat-panel-description>
                                 </mat-expansion-panel-header>
                                 <mat-form-field>
@@ -95,8 +99,8 @@
                 </mat-tab>
                 <mat-tab label="Contact">
                     <span *ngIf="!editable">
-                        <ul>
-                            <li *ngFor="let link of user.contactLinks"><a [href]="link.url">{{link.label}}</a></li>
+                        <ul class="contact-list">
+                            <li *ngFor="let link of user.contactLinks"><a class="contact-link" [href]="link.url">{{link.label}}</a></li>
                         </ul>
                     </span>
                     <span *ngIf="editable">
@@ -120,6 +124,5 @@
                 </mat-tab>
             </mat-tab-group>
         </mat-grid-tile>
-        <mat-grid-tile class="tile" colspan="4" rowspan="5">My job is filling space. How am I doing?</mat-grid-tile>
     </mat-grid-list>
 </div>

@@ -33,6 +33,7 @@ export class ProfileComponent implements OnInit {
   editable: boolean = false;
   myProfile: boolean = false;
   profileData: {};
+
   handleIt(info: any) {
     console.log('HANDLING IT...', info);
     this.selectedSkills = info;
@@ -41,10 +42,15 @@ export class ProfileComponent implements OnInit {
 
   saveSkillChanges(){
     console.log('saving skill changes');
+    for(let skill of this.selectedSkills){
+      this.profileData["skills"].push(skill)
+    }
   }
   async saveProfileChanges(input) {
     console.log("Saving", input);
-    await this.auth.setUserData(this.user, this.profileData);
+    const res = await this.auth.setUserData(this.user, this.profileData);
+    console.log('result', res)
+    this.editable = false;
     this.openSnackBar("Profile changes saved!", "OK");
   }
 
@@ -62,6 +68,10 @@ export class ProfileComponent implements OnInit {
   removeContactLink(input: any) {
     const index = this.profileData["contactLinks"].findIndex(link => link.url === input.url);
     this.profileData["contactLinks"].splice(index, 1);
+  }
+  removeSkill(input: any) {
+    const index = this.profileData["skills"].findIndex(skill => skill.name === input.name);
+    this.profileData["skills"].splice(index, 1);
   }
 
   openSnackBar(sendMessage, actionMessage?) {

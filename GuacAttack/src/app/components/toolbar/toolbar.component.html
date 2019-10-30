@@ -3,15 +3,16 @@
     flex: 1 1 auto;
   }
 </style>
-<mat-toolbar color="primary"><span routerLink="">
+<mat-toolbar color="primary">
+  <span routerLink="/home" class="align pointer">
     <img src="assets/img/color-wheel-48.png">&nbsp;Spectrum
-  </span><span class="toolbar-divider"></span><span routerLink="/profile">Profile</span><span
-    routerLink="/search">Explore</span><span class="toolbar-divider"></span>
+  </span>
+  <span class="toolbar-divider"></span>
+  <span class="margin-right pointer" routerLink="/profile">Profile</span>
+  <span class="pointer" routerLink="/search">Explore</span>
+  <span class="toolbar-divider"></span>
   <mat-menu #appMenu="matMenu">
     <ng-template matMenuContent>
-      <button routerLink="/profile-settings" mat-menu-item>
-        <mat-icon>edit</mat-icon>Profile Settings
-      </button>
       <button mat-menu-item (click)="auth.signOut()">
         <mat-icon>exit_to_app</mat-icon>Logout
       </button>
