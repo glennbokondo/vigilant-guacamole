@@ -90,7 +90,7 @@ export class AuthService {
     return userRef.set(data, { merge: true });
   }
 
-  async foo(user: User, data: any) {
+  async setUserData(user: User, data: any) {
     const userRef: AngularFirestoreDocument<User> = this.afs.doc(
       `users/${user.uid}`
     );
@@ -136,7 +136,6 @@ export class AuthService {
         console.log("Document data:", doc.data());
         return doc.data();
       } else {
-        // doc.data() will be undefined in this case
         console.log("No such document!");
       }
     });
