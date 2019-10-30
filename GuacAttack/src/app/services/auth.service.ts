@@ -113,9 +113,7 @@ export class AuthService {
     const userRef: AngularFirestoreDocument<User> = this.afs.doc(
       `users/${user.uid}`
     );
-    console.log('USERSKILLS', user.skills)
     const findResult = user.skills.filter(skill => skill.name === newSkill);
-    console.log('FINDRESULT', findResult);
     if(findResult.length !== 0){
       return;
     } else {
@@ -125,7 +123,6 @@ export class AuthService {
         user.skills.push(await this.fetchSkill(newSkill));
       }
     }
-      console.log('AFTER PUSH', user.skills)
     return await userRef.set(user, { merge: true });
   }
 

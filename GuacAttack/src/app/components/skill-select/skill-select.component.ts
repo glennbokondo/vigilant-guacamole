@@ -19,8 +19,6 @@ export class SkillSelectComponent implements OnInit {
       return
     }
     this.localSelected = this.selected;
-    console.log('SELECTED', this.selected);
-    console.log('SELECTED', this.localSelected);
   }
 
 }

@@ -86,12 +86,12 @@
                                     </mat-select>
                                 </mat-form-field><br>
                                 <mat-form-field>
-                                    <textarea matInput placeholder="How have you applied this skill so far?"
+                                    <textarea matInput placeholder="Tell us about it"
                                         [(ngModel)]="skill.description"></textarea>
                                 </mat-form-field>
                             </mat-expansion-panel>
                         </mat-accordion>
-                        <app-skill-select *ngIf="editable" item="user" (onChange)="handleIt($event)"></app-skill-select>
+                        <app-skill-select *ngIf="editable" item="user" (onChange)="updateSelectedSkills($event)"></app-skill-select>
                         <button mat-icon-button (click)="saveSkillChanges()">Add&nbsp;skills&nbsp;
                             <mat-icon>add_box</mat-icon>
                         </button>
