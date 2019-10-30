@@ -27,6 +27,7 @@ import { ContactComponent } from './components/contact/contact.component';
 import { FooterComponent } from './components/footer/footer.component';
 import { SkillSelectComponent } from './components/skill-select/skill-select.component';
 import { ImageListComponent } from './components/image-list/image-list.component';
+import { EasterEggComponent } from './components/easter-egg/easter-egg.component';
 
 @NgModule({
   declarations: [
@@ -43,7 +44,8 @@ import { ImageListComponent } from './components/image-list/image-list.component
     ContactComponent,
     FooterComponent,
     SkillSelectComponent,
-    ImageListComponent
+    ImageListComponent,
+    EasterEggComponent
   ],
   imports: [
     BrowserModule,

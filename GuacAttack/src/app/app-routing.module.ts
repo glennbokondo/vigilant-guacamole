@@ -11,6 +11,7 @@ import { AuthGuard } from './auth.guard';
 import { UserProfileComponent } from './components/user-profile/user-profile.component';
 import { ContactComponent } from './components/contact/contact.component';
 import { SkillSelectComponent } from './components/skill-select/skill-select.component';
+import { EasterEggComponent } from './components/easter-egg/easter-egg.component';
 
 const routes: Routes = [
   { path: "home", component: HomeComponent },
@@ -25,6 +26,7 @@ const routes: Routes = [
   { path: "search", component: SearchListComponent },
   { path: "contact", component: ContactComponent },
   { path: "select", component: SkillSelectComponent },
+  { path: "secret", component: EasterEggComponent },
   { path: '**', component: HomeComponent }
 ];
 

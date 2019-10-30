@@ -9,6 +9,5 @@ export interface User {
     }
     bio?: string;
     skills?: any[];
-    // firstName: string;
-    // lastName: string;
+    contactLinks?: any[];
   }
