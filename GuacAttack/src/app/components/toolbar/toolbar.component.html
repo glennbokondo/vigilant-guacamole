@@ -8,11 +8,23 @@
     <img src="assets/img/color-wheel-48.png">&nbsp;Spectrum
   </span>
   <span class="toolbar-divider"></span>
-  <span class="margin-right pointer" routerLink="/profile">Profile</span>
-  <span class="pointer" routerLink="/search">Explore</span>
-  <span class="toolbar-divider"></span>
+  <span class="margin-right pointer big-menu" routerLink="/profile">Profile</span>
+  <span class="pointer big-menu" routerLink="/search">Explore</span>
+  <span class="toolbar-divider big-menu"></span>
   <mat-menu #appMenu="matMenu">
     <ng-template matMenuContent>
+      <button mat-menu-item class="compact-menu" routerLink="/">
+        <mat-icon>home</mat-icon>Home
+      </button>
+      <button mat-menu-item class="compact-menu" routerLink="/profile">
+        <mat-icon>account_circle</mat-icon>Profile
+      </button>
+      <button mat-menu-item class="compact-menu" routerLink="/search">
+        <mat-icon>explore</mat-icon>Explore
+      </button>
+      <button mat-menu-item class="compact-menu" routerLink="/contact">
+        <mat-icon>info</mat-icon>Contact Us
+      </button>
       <button mat-menu-item (click)="auth.signOut()">
         <mat-icon>exit_to_app</mat-icon>Logout
       </button>

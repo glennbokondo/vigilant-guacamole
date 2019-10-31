@@ -1,8 +1,16 @@
 .margin-right
     margin-right: 20px
-.pointer    
+.pointer
     cursor: pointer
 .align
     display: flex
     justify-content: flex-start
     align-items: center
+.big-menu
+    display: block
+    @media only screen and (min-device-width : 320px) and (max-device-width : 768px)
+        display: none
+.compact-menu
+    display: none
+    @media only screen and (min-device-width : 320px) and (max-device-width : 768px)
+        display: block

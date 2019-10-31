@@ -6,6 +6,7 @@ import { Router, ActivatedRoute, ParamMap } from "@angular/router";
 import { switchMap } from "rxjs/operators";
 import { StorageService } from 'src/app/services/storage.service';
 import { MatSnackBar } from '@angular/material/snack-bar';
+import { FormControl, Validators, FormGroup } from '@angular/forms';
 
 @Component({
   selector: "app-profile",
@@ -34,15 +35,30 @@ export class ProfileComponent implements OnInit {
   myProfile: boolean = false;
   profileData: {};
 
+  reg: any;
+
+  public urlForm: FormGroup;
+  validationGroup = new FormGroup({
+    url: new FormControl('', [
+      Validators.required,
+      Validators.pattern(this.reg)
+    ])
+  })
+
+  hasError = (controlName: string, errorName: string) => {
+    return this.urlForm.controls[controlName].hasError(errorName);
+  }
+
   updateSelectedSkills(info: any) {
     this.selectedSkills = info;
   }
 
-  saveSkillChanges(){
-    for(let skill of this.selectedSkills){
+  saveSkillChanges() {
+    for (let skill of this.selectedSkills) {
       this.profileData["skills"].push(skill)
     }
   }
+
   async saveProfileChanges(input) {
     const res = await this.auth.setUserData(this.user, this.profileData);
     this.editable = false;
@@ -50,29 +66,42 @@ export class ProfileComponent implements OnInit {
   }
 
   cancelProfileChanges() {
-    this.profileData = {...this.user};
+    this.profileData = { ...this.user };
     this.editable = false;
   }
 
   saveContactLinkChanges() {
-    this.profileData["contactLinks"].push({...this.newContactLink});
+    if (!this.urlForm.valid) {
+      return this.openSnackBar("Could not save: invalid URL", "OK")
+    }
+    this.profileData["contactLinks"].push({ ...this.newContactLink });
     this.newContactLink.label = '';
     this.newContactLink.url = '';
     this.openSnackBar("Link added, don't forget to save your changes!", "OK");
   }
+
   removeContactLink(input: any) {
     const index = this.profileData["contactLinks"].findIndex(link => link.url === input.url);
     this.profileData["contactLinks"].splice(index, 1);
   }
+
   removeSkill(input: any) {
     const index = this.profileData["skills"].findIndex(skill => skill.name === input.name);
     this.profileData["skills"].splice(index, 1);
   }
 
   openSnackBar(sendMessage, actionMessage?) {
-    this._snackBar.open(sendMessage, actionMessage, {duration: 3000});
+    this._snackBar.open(sendMessage, actionMessage, { duration: 3000 });
   }
+
   async ngOnInit() {
+    this.reg = '(https?://)?([\\da-z.-]+)\\.([a-z.]{2,6})[/\\w .-]*/?';
+    this.urlForm = new FormGroup({
+      url: new FormControl('', [
+        Validators.required,
+        Validators.pattern(this.reg)
+      ])
+    })
     this.newContactLink = {
       label: '',
       url: ''
@@ -84,7 +113,7 @@ export class ProfileComponent implements OnInit {
     } else {
       this.myProfile = true;
       this.user = await this.auth.findMe();
-      this.profileData = {...this.user};
+      this.profileData = { ...this.user };
     }
     for (let skill of this.user.skills) {
       this.skillCollection.push(await this.auth.fetchSkill(skill));

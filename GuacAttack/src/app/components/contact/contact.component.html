@@ -1,31 +1,29 @@
-<div class="center">
-    <mat-card class="card">
-        <agm-map class="rounded shadow" [latitude]="lat" [longitude]="lng">
-            <agm-marker [latitude]="lat" [longitude]="lng"></agm-marker>
-        </agm-map>
-    </mat-card>
-    <mat-card class="card">
-        <mat-card-title class="grey padded rounded shadow">Why PyongYang?</mat-card-title>
-        <mat-card-content class="grey padded rounded shadow">
-            <div class="text-field">Here at Totally Made Up Corp., we believe in exploring the impossible.<br>
-                So when our
-                newest intern suggested we should base our new web development headquarters in North-Korea, we
-                said: "Why not?"</div>
-        </mat-card-content>
-    </mat-card>
-    <mat-card class="card">
-        <mat-card-title class="grey padded rounded shadow">Send us a message</mat-card-title>
-        <mat-card-content class="grey padded rounded shadow">
-            <mat-form-field>
-                <input matInput placeholder="From:" [(ngModel)]="form.email">
-            </mat-form-field><br>
-            <mat-form-field>
-                <input matInput placeholder="Subject:" [(ngModel)]="form.displayName">
-            </mat-form-field><br>
-            <mat-form-field class="content">
-                <textarea matInput placeholder="Body:" [(ngModel)]="form.firstName"></textarea>
-            </mat-form-field><br>
-            <button primary mat-raised-button (click)="openSnackBar()">Save</button>
-        </mat-card-content>
-    </mat-card>
-</div>
+<mat-card class="card">
+    <agm-map class="rounded shadow" [latitude]="lat" [longitude]="lng">
+        <agm-marker [latitude]="lat" [longitude]="lng"></agm-marker>
+    </agm-map>
+</mat-card>
+<mat-card class="card">
+    <mat-card-title class="grey padded rounded shadow">Why PyongYang?</mat-card-title>
+    <mat-card-content class="grey padded rounded shadow">
+        <div class="text-field">Here at Totally Made Up Corp., we believe in exploring the impossible.<br>
+            So when our
+            newest intern suggested we should base our new web development headquarters in North-Korea, we
+            said: "Why not?"</div>
+    </mat-card-content>
+</mat-card>
+<mat-card class="card last">
+    <mat-card-title class="grey padded rounded shadow">Send us a message</mat-card-title>
+    <mat-card-content class="grey padded rounded shadow">
+        <mat-form-field>
+            <input matInput placeholder="From:" [(ngModel)]="form.email">
+        </mat-form-field><br>
+        <mat-form-field>
+            <input matInput placeholder="Subject:" [(ngModel)]="form.displayName">
+        </mat-form-field><br>
+        <mat-form-field class="content">
+            <textarea matInput placeholder="Body:" [(ngModel)]="form.firstName"></textarea>
+        </mat-form-field><br>
+        <button primary mat-raised-button (click)="openSnackBar()">Save</button>
+    </mat-card-content>
+</mat-card>
