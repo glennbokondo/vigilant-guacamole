@@ -28,8 +28,6 @@ export class AuthService {
 
   async findMe() {
     const user = await this.afAuth.authState.pipe(first()).toPromise();
-
-    // Logged in
     if (user) {
       return await this.afs
         .doc<User>(`users/${user.uid}`)
@@ -55,7 +53,7 @@ export class AuthService {
           alert(errorMessage);
         }
       });
-      this.router.navigate(["/profile-settings"]);
+      this.router.navigate(["/profile"]);
   }
 
   async signIn(email: string, password: string) {
@@ -71,7 +69,7 @@ export class AuthService {
         }
       });
     if (credential) {
-      this.router.navigate(["/profile-settings", credential.user.uid]);
+      this.router.navigate(["/home"]);
       return this.updateUserData(credential.user);
     }
   }
