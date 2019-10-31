@@ -6,7 +6,7 @@ import { MatSnackBar } from '@angular/material/snack-bar';
   templateUrl: './contact.component.html',
   styleUrls: ['./contact.component.sass']
 })
-export class ContactComponent implements OnInit {
+export class ContactComponent {
   form: any = {}
   sendMessage: string = "You've just sent an e-mail to North-Korea. Good luck!"
   lat = 39.052178;
@@ -16,8 +16,4 @@ export class ContactComponent implements OnInit {
   openSnackBar() {
     this._snackBar.open(this.sendMessage, "Thanks...", {duration: 3000});
   }
-
-  ngOnInit() {
-  }
-
 }

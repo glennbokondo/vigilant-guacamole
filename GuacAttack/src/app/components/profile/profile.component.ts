@@ -1,10 +1,6 @@
 import { Component, OnInit } from "@angular/core";
-import { UserService } from "../../services/user.service";
-import { User } from "../../models/user.model";
 import { AuthService } from "src/app/services/auth.service";
-import { Router, ActivatedRoute, ParamMap } from "@angular/router";
-import { switchMap } from "rxjs/operators";
-import { StorageService } from 'src/app/services/storage.service';
+import {  ActivatedRoute } from "@angular/router";
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { FormControl, Validators, FormGroup } from '@angular/forms';
 
@@ -17,8 +13,6 @@ export class ProfileComponent implements OnInit {
   constructor(
     private auth: AuthService,
     private route: ActivatedRoute,
-    private userService: UserService,
-    private storageService: StorageService,
     private _snackBar: MatSnackBar
   ) { }
 
@@ -28,7 +22,6 @@ export class ProfileComponent implements OnInit {
   };
   user: any;
   routeId: any;
-  temp: any;
   selectedSkills: any[];
   skillCollection: any[] = [];
   editable: boolean = false;
@@ -60,7 +53,7 @@ export class ProfileComponent implements OnInit {
   }
 
   async saveProfileChanges(input) {
-    const res = await this.auth.setUserData(this.user, this.profileData);
+    await this.auth.setUserData(this.user, this.profileData);
     this.editable = false;
     this.openSnackBar("Profile changes saved!", "OK");
   }

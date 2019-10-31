@@ -1,5 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import { User } from '../../models/user.model';
 import { AuthService } from 'src/app/services/auth.service';
 import { Router } from '@angular/router';
 
@@ -15,7 +14,6 @@ export class SearchListComponent implements OnInit {
   users: any;
 
   async goToProfile(userID){
-    console.log(userID);
     let myself = await this.auth.findMe();
     if(myself.uid === userID){
       this.router.navigate(["/profile"]);
