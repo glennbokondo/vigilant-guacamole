@@ -1,10 +1,13 @@
-<mat-card>
-  <mat-card-title-group><img mat-card-avatar src="../../../assets/img/docker-50.png">
-    <mat-card-title>{{user.displayName}}</mat-card-title>
-    <mat-card-subtitle>{{user.firstName}}&nbsp;{{user.lastName}}&nbsp;-&nbsp;{{user.email}}</mat-card-subtitle>
-  </mat-card-title-group>
-  <mat-card-content>This is where very interesting information would go. Did you know that a bee produces a
-    teaspoon
-    of honey (about 5 grams) in her lifetime?</mat-card-content>
-  <mat-card-actions><button mat-button>View profile</button></mat-card-actions>
-</mat-card>
+<div class="list-wrapper">
+  <mat-card *ngFor="let user of users" class="card padded rounded list-item">
+    <div class="grey padded rounded shadow align m-b card-header">
+      <img mat-card-avatar class="card-image"
+        [src]="user.thumb64URL">
+      <div class="card-title">{{user.displayName}}</div>
+      <div class="card-subtitle">{{user.name.first}}&nbsp;{{user.name.last}}</div>
+      <div class="card-comment">{{user.email}}</div>
+    </div>
+    <mat-card-content class="grey padded rounded shadow align">{{user.bio}}</mat-card-content>
+    <mat-card-actions><button mat-button class="grey" (click)="goToProfile(user.uid)">View profile</button></mat-card-actions>
+  </mat-card>
+</div>

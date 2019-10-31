@@ -6,7 +6,8 @@ import { auth } from "firebase/app";
 import { AngularFireAuth } from "@angular/fire/auth";
 import {
   AngularFirestore,
-  AngularFirestoreDocument
+  AngularFirestoreDocument,
+  AngularFirestoreCollection
 } from "@angular/fire/firestore";
 
 import { Observable, of } from "rxjs";
@@ -22,7 +23,7 @@ export class AuthService {
   constructor(
     private afAuth: AngularFireAuth,
     private afs: AngularFirestore,
-    private router: Router
+    private router: Router,
   ) {
   }
 
@@ -34,16 +35,20 @@ export class AuthService {
         .get()
         .pipe(
           take(1),
-          map(req =>req.data() as User)
+          map(req => req.data() as User)
         )
         .toPromise();
     }
   }
 
+  async fetchAllUsers() {
+    const snapshot = await this.afs.firestore.collection('users').get()
+    return snapshot.docs.map(doc => doc.data());
+  }
   register(email: string, password: string) {
     this.afAuth.auth
       .createUserWithEmailAndPassword(email, password)
-      .catch(function(error) {
+      .catch(function (error) {
         // Handle Errors here.
         var errorCode = error.code;
         var errorMessage = error.message;
@@ -53,13 +58,13 @@ export class AuthService {
           alert(errorMessage);
         }
       });
-      this.router.navigate(["/profile"]);
+    this.router.navigate(["/profile"]);
   }
 
   async signIn(email: string, password: string) {
     const credential = await this.afAuth.auth
       .signInWithEmailAndPassword(email, password)
-      .catch(function(error) {
+      .catch(function (error) {
         var errorCode = error.code;
         var errorMessage = error.message;
         if (errorCode === "auth/wrong-password") {
@@ -77,31 +82,31 @@ export class AuthService {
     const userRef: AngularFirestoreDocument<User> = this.afs.doc(
       `users/${user.uid}`
     );
-    
+
     return await userRef.set(data, { merge: true });
   }
 
   async fetchSkill(skill: any) {
     return await this.afs
-        .doc(`skills/${skill}`)
-        .get()
-        .pipe(
-          take(1),
-          map(req =>req.data())
-        )
-        .toPromise();
+      .doc(`skills/${skill}`)
+      .get()
+      .pipe(
+        take(1),
+        map(req => req.data())
+      )
+      .toPromise();
   }
 
-  async addSkillToUser(user: User, newSkill: string){
+  async addSkillToUser(user: User, newSkill: string) {
     const userRef: AngularFirestoreDocument<User> = this.afs.doc(
       `users/${user.uid}`
     );
     const findResult = user.skills.filter(skill => skill.name === newSkill);
-    if(findResult.length !== 0){
+    if (findResult.length !== 0) {
       return;
     } else {
       const index = user.skills.findIndex(skill => skill === newSkill);
-      if(index){
+      if (index) {
         user.skills.splice(index, 1);
         user.skills.push(await this.fetchSkill(newSkill));
       }
@@ -133,7 +138,7 @@ export class AuthService {
         ...payload,
         displayName: "QRY91"
       })
-      .then(function() {})
-      .catch(function(error) {});
+      .then(function () { })
+      .catch(function (error) { });
   }
 }
