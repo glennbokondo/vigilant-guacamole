@@ -21,10 +21,12 @@ export class AuthGuard implements CanActivate {
     this._snackBar.open("Please sign in or register to continue", "OK", {duration: 3000});
   }
   canActivate(next: ActivatedRouteSnapshot, state: RouterStateSnapshot): boolean {
+    return true;
+    console.log(this.auth.loginStatus);
     if(!this.auth.loginStatus){
       this.router.navigate(['login']);
       this.openSnackBar();
-      return false;
+      // return false;
     }
     return true;
   }
