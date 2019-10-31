@@ -1,20 +1,17 @@
-<div *ngIf="authService.afAuth.user | async as user; else showLogin">
-    
-    <h1>Hello {{ user.email }}!</h1>
-</div>
-{{authService.afAuth.auth.currentUser.email}}
-{{authService.afAuth.auth.cPurrentUser.uid}}
-<ng-template #showLogin>
+<mat-card class="card padded shadow rounded">
+    <mat-card-content class="grey padded rounded shadow align">
     <mat-form-field>
-            <input matInput placeholder="Enter your email" [(ngModel)]="form.email" [formControl]="email" required>
-            <mat-error *ngIf="email.invalid">{{getErrorMessage()}}</mat-error>
-    </mat-form-field>
+        <input matInput placeholder="Enter your email" [(ngModel)]="form.email" [formControl]="email" required>
+        <mat-error *ngIf="email.invalid">{{getErrorMessage()}}</mat-error>
+    </mat-form-field><br>
     <mat-form-field>
-            <input matInput placeholder="Password" [(ngModel)]="form.password" [type]="hide ? 'password' : 'text'">
-            <button mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-label]="'Hide password'" [attr.aria-pressed]="hide">
+        <input matInput placeholder="Password" [(ngModel)]="form.password" [type]="hide ? 'password' : 'text'">
+        <button mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-label]="'Hide password'"
+            [attr.aria-pressed]="hide">
             <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
-            </button>
-    </mat-form-field>
-    <button mat-raised-button (click)="login()">Login</button>
-    <button mat-raised-button (click)="register()">Register</button>
-    </ng-template>
+        </button>
+    </mat-form-field><br>
+    <button mat-raised-button (click)="auth.signIn(form.email, form.password)">Sign In</button><br>
+    <button mat-raised-button class="space" (click)="auth.register()">Register</button>
+</mat-card-content>
+</mat-card>

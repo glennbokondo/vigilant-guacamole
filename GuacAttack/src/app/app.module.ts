@@ -22,7 +22,6 @@ import { LoginComponent } from "./components/login/login.component";
 import { FormsModule } from "@angular/forms";
 import { AuthService } from './services/auth.service';
 import { NewProfileComponent } from './components/new-profile/new-profile.component';
-import { UserProfileComponent } from './components/user-profile/user-profile.component';
 import { ContactComponent } from './components/contact/contact.component';
 import { SkillSelectComponent } from './components/skill-select/skill-select.component';
 import { ImageListComponent } from './components/image-list/image-list.component';
@@ -40,7 +39,6 @@ import { AgmCoreModule } from '@agm/core';
     ProfileSettingsComponent,
     LoginComponent,
     NewProfileComponent,
-    UserProfileComponent,
     ContactComponent,
     SkillSelectComponent,
     ImageListComponent,
