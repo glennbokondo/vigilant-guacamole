@@ -1,37 +1,31 @@
-<div class="container">
-    <mat-grid-list cols="4" rowHeight="4:1" gutterSize="10">
-        <mat-grid-tile colspan="1" rowspan="4">
-            <iframe
-                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d11932.570491512293!2d125.73902935757258!3d39.009425426184!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x357e1cb3e9322e51%3A0x7b988e9fdd18fdba!2sYokjon%20Department%20Store!5e0!3m2!1sen!2sbe!4v1572088734501!5m2!1sen!2sbe"
-                width="600" height="450" frameborder="0" style="border:0;" allowfullscreen=""></iframe>
-        </mat-grid-tile>
-        <mat-grid-tile class="tile" colspan="3" rowspan="1">
-            <mat-card class="card">
-                <mat-card-title>Why PyongYang?</mat-card-title>
-                <mat-card-content>
-                    <p>Here at Totally Made Up Corp., we believe in exploring the impossible.</p>
-                    <p>So when our
-                        newest intern suggested we should base our new web development headquarters in North-Korea, we
-                        said: "Why not?"</p>
-                </mat-card-content>
-            </mat-card>
-        </mat-grid-tile>
-        <mat-grid-tile class="tile" colspan="3" rowspan="4">
-            <mat-card class="card">
-                <mat-card-title>Send us a message</mat-card-title>
-                <mat-card-content>
-                        <mat-form-field>
-                                <input matInput placeholder="From:" [(ngModel)]="form.email">
-                        </mat-form-field><br>
-                        <mat-form-field>
-                                <input matInput placeholder="Subject:" [(ngModel)]="form.displayName">
-                        </mat-form-field><br>
-                        <mat-form-field class="content">
-                                <textarea matInput placeholder="Body:" [(ngModel)]="form.firstName"></textarea>  
-                        </mat-form-field><br>
-                        <button primary mat-raised-button (click)="openSnackBar()">Save</button>
-                </mat-card-content>
-            </mat-card>
-        </mat-grid-tile>
-    </mat-grid-list>
+<div class="center">
+    <mat-card class="card">
+        <agm-map class="rounded shadow" [latitude]="lat" [longitude]="lng">
+            <agm-marker [latitude]="lat" [longitude]="lng"></agm-marker>
+        </agm-map>
+    </mat-card>
+    <mat-card class="card">
+        <mat-card-title class="grey padded rounded shadow">Why PyongYang?</mat-card-title>
+        <mat-card-content class="grey padded rounded shadow">
+            <div class="text-field">Here at Totally Made Up Corp., we believe in exploring the impossible.<br>
+                So when our
+                newest intern suggested we should base our new web development headquarters in North-Korea, we
+                said: "Why not?"</div>
+        </mat-card-content>
+    </mat-card>
+    <mat-card class="card">
+        <mat-card-title class="grey padded rounded shadow">Send us a message</mat-card-title>
+        <mat-card-content class="grey padded rounded shadow">
+            <mat-form-field>
+                <input matInput placeholder="From:" [(ngModel)]="form.email">
+            </mat-form-field><br>
+            <mat-form-field>
+                <input matInput placeholder="Subject:" [(ngModel)]="form.displayName">
+            </mat-form-field><br>
+            <mat-form-field class="content">
+                <textarea matInput placeholder="Body:" [(ngModel)]="form.firstName"></textarea>
+            </mat-form-field><br>
+            <button primary mat-raised-button (click)="openSnackBar()">Save</button>
+        </mat-card-content>
+    </mat-card>
 </div>

@@ -24,10 +24,10 @@ import { AuthService } from './services/auth.service';
 import { NewProfileComponent } from './components/new-profile/new-profile.component';
 import { UserProfileComponent } from './components/user-profile/user-profile.component';
 import { ContactComponent } from './components/contact/contact.component';
-import { FooterComponent } from './components/footer/footer.component';
 import { SkillSelectComponent } from './components/skill-select/skill-select.component';
 import { ImageListComponent } from './components/image-list/image-list.component';
 import { EasterEggComponent } from './components/easter-egg/easter-egg.component';
+import { AgmCoreModule } from '@agm/core';
 
 @NgModule({
   declarations: [
@@ -42,7 +42,6 @@ import { EasterEggComponent } from './components/easter-egg/easter-egg.component
     NewProfileComponent,
     UserProfileComponent,
     ContactComponent,
-    FooterComponent,
     SkillSelectComponent,
     ImageListComponent,
     EasterEggComponent
@@ -57,7 +56,9 @@ import { EasterEggComponent } from './components/easter-egg/easter-egg.component
     AngularFireStorageModule,
     AngularFirestoreModule,
     AngularFireAuthModule,
-    AppRoutingModule
+    AppRoutingModule, AgmCoreModule.forRoot({
+      apiKey: 'AIzaSyB-0lYi8tjgjCv-Di8dM0S2glcOyLASeZU'
+    })
   ],
   providers: [AuthService],
   bootstrap: [AppComponent]
