@@ -17,8 +17,7 @@ import { switchMap, take, map, first } from "rxjs/operators";
   providedIn: "root"
 })
 export class AuthService {
-  user$: Observable<User>;
-  user: User;
+  public loginStatus: boolean;
 
   constructor(
     private afAuth: AngularFireAuth,
@@ -85,6 +84,7 @@ export class AuthService {
         }
       });
     if (credential) {
+      this.loginStatus = true;
       this.router.navigate(["/home"]);
     }
   }
@@ -138,6 +138,7 @@ export class AuthService {
   }
 
   async signOut() {
+    this.loginStatus = false;
     await this.afAuth.auth.signOut();
     this.router.navigate(["/login"]);
   }
