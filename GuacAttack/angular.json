@@ -31,6 +31,12 @@
               "./node_modules/@angular/material/prebuilt-themes/deeppurple-amber.css",
               "src/styles.sass"
             ],
+            "stylePreprocessorOptions": {
+              "includePaths": [
+                  ".",
+                  "./node_modules" 
+               ]
+            },
             "scripts": [
               "../GuacAttack/node_modules/blueimp-canvas-to-blob/js/canvas-to-blob.min.js"
             ]

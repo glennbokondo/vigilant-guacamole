@@ -8,10 +8,17 @@ import * as skillList from '../mock-data/skills';
 })
 export class SkillSelectComponent implements OnInit {
   skills: any;
+  localSelected: any;
+  @Input() selected;
   @Input() item;
   @Output() onChange = new EventEmitter();
   ngOnInit() {
-    this.skills = skillList.skills
+    this.skills = skillList.skills;
+    
+    if(!this.selected){
+      return
+    }
+    this.localSelected = this.selected;
   }
 
 }

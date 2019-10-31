@@ -1,1 +1,91 @@
 /* You can add global styles to this file, and also import other style files */
+@import '../node_modules/@angular/material/prebuilt-themes/deeppurple-amber.css'
+
+html, body
+    height: 100%
+
+body
+    margin: 0px
+
+.bgimg
+    display: block
+    width: 100%
+    height: 100%
+    background: url('assets/img/background-blur-blurred-255379.jpg') no-repeat center center fixed
+
+.container-flex
+    height: 100%
+    width: 75%
+    margin-left: auto
+    margin-right: auto
+    display: flex
+    padding: 2rem 0 10rem 0
+    justify-content: center
+    @media only screen and (min-device-width : 320px) and (max-device-width : 768px)
+        display: flex
+        justify-content: center
+        flex-direction: row
+        flex-wrap: wrap
+        
+.footer
+    background-color: #7c57bd
+    color: white
+    text-align: center
+    font-weight: 300
+    font-size: 14px
+    font-family: Roboto, "Helvetica Neue", sans-serif
+    position: fixed
+    bottom: 0
+    width: 100%
+    height: 5rem
+    @media only screen and (min-device-width : 320px) and (max-device-width : 768px)
+        display: none
+
+.footer-nav
+    list-style: none
+    text-decoration: none
+    display: flex
+    justify-content: space-evenly
+    align-items: baseline
+
+.footer-link
+    text-decoration: none
+    color: white
+
+.secret
+    opacity: 0
+    color: white
+
+.secret:hover
+    opacity: 0.5
+    color: white
+
+.m-t
+    margin-top: 16px
+.m-b
+    margin-bottom: 16px
+.m-l
+    margin-left: 16px
+.m-r
+    margin-right: 16px
+
+.card
+    background: url('assets/img/hexagonal-pattern.jpg')
+    @media only screen and (min-device-width : 320px) and (max-device-width : 768px)
+        width: 100%
+        margin-bottom: 16px
+        margin-left: auto
+        margin-right: auto
+
+
+.grey
+    background-color: #EDEDED
+
+.padded
+    padding: 20px
+
+.rounded
+    border-radius: 4px
+
+.shadow
+    box-shadow: 0 2px 1px -1px rgba(0, 0, 0, 0.2), 0 1px 1px 0 rgba(0, 0, 0, 0.14), 0 1px 3px 0 rgba(0, 0, 0, 0.12)

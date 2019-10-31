@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { UserService } from '../../services/user.service';
 import { User } from '../../models/user.model';
+import { AuthService } from 'src/app/services/auth.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-search-list',
@@ -9,20 +10,29 @@ import { User } from '../../models/user.model';
 })
 export class SearchListComponent implements OnInit {
 
-  constructor(private userService: UserService) { }
+  constructor(private auth: AuthService, private router: Router) { }
 
   users: any;
-  displayedColumns = ['displayName', 'firstName', 'lastName', 'email']
-  async getUsers() {
-    this.users = await this.userService.getAll();
+
+  async goToProfile(userID){
+    console.log(userID);
+    let myself = await this.auth.findMe();
+    if(myself.uid === userID){
+      this.router.navigate(["/profile"]);
+    } else {
+      this.router.navigate(["/profile", userID]);
+    }
   }
 
-  createUser(user: User): void {
-    this.userService.create(user);
-  }
+  async makeSomeMoreUsersLmao(){
+    let template = await this.auth.findMe();
+    console.log(template);
+    // await this.auth.addUser(template);
 
-  ngOnInit() {
-    this.getUsers();
+  }
+  async ngOnInit() {
+    this.makeSomeMoreUsersLmao()
+    this.users = await this.auth.fetchAllUsers();
   }
 
 }

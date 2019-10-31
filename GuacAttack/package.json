@@ -11,6 +11,7 @@
   },
   "private": true,
   "dependencies": {
+    "@agm/core": "^1.0.0",
     "@angular/animations": "~8.2.8",
     "@angular/cdk": "~8.2.2",
     "@angular/common": "~8.2.8",
@@ -22,6 +23,7 @@
     "@angular/platform-browser": "~8.2.8",
     "@angular/platform-browser-dynamic": "~8.2.8",
     "@angular/router": "~8.2.8",
+    "@material/image-list": "^3.1.0",
     "blueimp-canvas-to-blob": "^3.16.0",
     "firebase": "^7.2.0",
     "firebaseui": "^4.2.0",
