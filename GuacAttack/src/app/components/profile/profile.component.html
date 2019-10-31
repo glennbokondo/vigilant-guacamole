@@ -121,7 +121,6 @@
                         <mat-form-field [formGroup]="urlForm">
                             <input matInput placeholder="URL" formControlName="url" [(ngModel)]="newContactLink.url" required>
                             <mat-error *ngIf="hasError('url', 'pattern')">Not a valid URL</mat-error>
-                            <!-- <input matInput placeholder="URL" [(ngModel)]="newContactLink.url"> -->
                         </mat-form-field><br>
                         <mat-form-field>
                             <input matInput placeholder="Label" [(ngModel)]="newContactLink.label">

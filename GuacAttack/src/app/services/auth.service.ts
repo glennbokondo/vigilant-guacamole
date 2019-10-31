@@ -41,10 +41,6 @@ export class AuthService {
     }
   }
 
-  async addUser(user) {
-    await this.afs.firestore.collection('users').add(user);
-  }
-
   async findUserById(userID) {
     return await this.afs
       .doc<User>(`users/${userID}`)

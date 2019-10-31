@@ -24,14 +24,7 @@ export class SearchListComponent implements OnInit {
     }
   }
 
-  async makeSomeMoreUsersLmao(){
-    let template = await this.auth.findMe();
-    console.log(template);
-    // await this.auth.addUser(template);
-
-  }
   async ngOnInit() {
-    this.makeSomeMoreUsersLmao()
     this.users = await this.auth.fetchAllUsers();
   }
 
