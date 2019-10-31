@@ -15,17 +15,19 @@ import { Observable } from "rxjs";
   providedIn: "root"
 })
 export class AuthGuard implements CanActivate {
-  constructor(private auth: AuthService, private router: Router) {}
-  canActivate(next: ActivatedRouteSnapshot, state: RouterStateSnapshot): Observable<boolean> {
+  constructor(public auth: AuthService, public router: Router) {}
 
+  canActivate(next: ActivatedRouteSnapshot, state: RouterStateSnapshot): Observable<boolean> {
     return this.auth.user$.pipe(
          take(1),
          map(user => !!user),
          tap(loggedIn => {
            if (!loggedIn) {
              console.log('access denied')
-             this.router.navigate(['/login']);
-           }
+             this.router.navigate(['login']);
+             return false;
+            }
+            return true;
        })
   )
 }
