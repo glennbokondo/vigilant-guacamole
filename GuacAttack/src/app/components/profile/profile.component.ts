@@ -109,7 +109,7 @@ export class ProfileComponent implements OnInit {
     const routeId = this.route.snapshot.params.id;
     if (routeId) {
       this.myProfile = false;
-      this.user = await this.userService.getById(routeId);
+      this.user = await this.auth.findUserById(routeId);
     } else {
       this.myProfile = true;
       this.user = await this.auth.findMe();

@@ -41,6 +41,21 @@ export class AuthService {
     }
   }
 
+  async addUser(user) {
+    await this.afs.firestore.collection('users').add(user);
+  }
+
+  async findUserById(userID) {
+    return await this.afs
+      .doc<User>(`users/${userID}`)
+      .get()
+      .pipe(
+        take(1),
+        map(req => req.data() as User)
+      )
+      .toPromise()
+  }
+
   async fetchAllUsers() {
     const snapshot = await this.afs.firestore.collection('users').get()
     return snapshot.docs.map(doc => doc.data());

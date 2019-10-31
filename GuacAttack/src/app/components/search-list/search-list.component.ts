@@ -13,7 +13,9 @@ export class SearchListComponent implements OnInit {
   constructor(private auth: AuthService, private router: Router) { }
 
   users: any;
+
   async goToProfile(userID){
+    console.log(userID);
     let myself = await this.auth.findMe();
     if(myself.uid === userID){
       this.router.navigate(["/profile"]);
@@ -21,9 +23,16 @@ export class SearchListComponent implements OnInit {
       this.router.navigate(["/profile", userID]);
     }
   }
+
+  async makeSomeMoreUsersLmao(){
+    let template = await this.auth.findMe();
+    console.log(template);
+    // await this.auth.addUser(template);
+
+  }
   async ngOnInit() {
+    this.makeSomeMoreUsersLmao()
     this.users = await this.auth.fetchAllUsers();
-    console.log(this.users);
   }
 
 }
